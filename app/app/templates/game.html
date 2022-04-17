@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container">
+    <div class="row justify-content-md-center g-2">
+        <div class="col col-sm-4">
+            {% if user.is_authenticated %}
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Review {{game.Title}}
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Submit your review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      {% include 'components/review.html' %}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% else %}
+            {% url 'login' as 'login_url' %}
+            <a class="btn btn-link" href="{{login_url}}" role="button">Login to leave a review</a>
+            {% endif %}
+          </div>
+      <div class="col col-sm-10">
+        <div class="card" >
+            <div class="card-body">
+              <h5 class="card-title">{{game.Title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{game.Genre}}</h6>
+              <p class="card-text">{{game.Description}}</p>
+              <div class="row g-2">
+                <div class="col col-lg-4">
+                  <p class="card-text"><strong>Price: </strong>{{game.Price}}</p>
+                </div>
+                <div class="col col-lg-4">
+                  <p class="card-text"><strong>Game length: </strong>{{game.LengthOfTime}} hour{% if game.LengthOfTime > 1 %}s{% endif %}</p>
+                </div>
+                <div class="col col-lg-4">
+                  <p class="card-text"><strong>Console: </strong>{{game.Console}}</p>
+                </div>
+                <div class="col col-lg-4">
+                  <p class="card-text"><strong>Studio: </strong>{{game.Studio}}</p>
+                </div>
+                <div class="col col-lg-4">
+                  <p class="card-text"><strong># of Reviews: </strong>{{game.Reviews}}</p>
+                </div>
+                {% if avg_review and avg_review.Score__avg %}
+                <div class="col col-lg-4">
+                    <p class="card-text"><strong>Avg Rating: </strong>{{avg_review.Score__avg}}</p>
+                  </div>
+                  {% else %}
+                <div class="col col-lg-4"></div>
+                {% endif %}
+                  {% if not favorited %}
+                <div class="col col-lg-auto">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-success" name="fav" value="yep" type="submit">Favorite</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% if not owned %}
+                <div class="col col-lg-auto">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-success" name="own" value="yep" type="submit">Mark as owned</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

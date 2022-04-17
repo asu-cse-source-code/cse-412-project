@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h1 class="text-center">Register</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+        <form class="row g-3" action="" method="POST">
+        {% csrf_token %}
+            <div class="col-md-4">
+              <label for="validationDefault01" class="form-label">First name</label>
+              <input type="text" class="form-control" id="validationDefault01" name="first_name" required>
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="validationDefault02" name="last_name" required>
+            </div>
+            <div class="col-md-2">
+                <label for="validationDefault03" class="form-label">Age</label>
+                <input type="number" class="form-control" id="validationDefault03" name="age" required>
+              </div>
+            <div class="col-md-4">
+              <label for="validationDefaultUsername" class="form-label">Username</label>
+              <div class="input-group">
+                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                <input type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" name="username" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefault05" class="form-label">Password</label>
+              <input type="password" class="form-control" id="validationDefault05" name="password" required>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Submit form</button>
+              {% url 'login' as login_url %}
+              <a class="btn btn-link" href="{{login_url}}" role="button">Already have an account?</a>
+            </div>
+          </form>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+{% endblock %}

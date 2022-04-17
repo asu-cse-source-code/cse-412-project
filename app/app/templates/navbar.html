@@ -1,0 +1,56 @@
+<nav
+  class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+  id="mainNav"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">GameSpot</a>
+    <button
+      class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <form class="d-inline-flex col col-lg-6 pt-2" method=POST action="">
+      <input class="form-control me-2" type="search" placeholder="Find a new game!" aria-label="Search" name="searched">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        {% url 'profile' as profile_url %}
+        <li class="nav-item mx-0 mx-lg-1">
+          <a
+            class="nav-link py-3 px-0 px-lg-3 rounded {% if request.path == profile_url %}active{% endif %}"
+            href="{{profile_url}}"
+            >Profile</a
+          >
+        </li>
+        {% if not user.is_authenticated %}
+        {% url 'login' as login_url %}
+        <li class="nav-item mx-0 mx-lg-1">
+          <a
+            class="nav-link py-3 px-0 px-lg-3 rounded {% if request.path == login_url %}active{% endif %}"
+            href="{{login_url}}"
+            >Login</a
+          >
+        </li>
+        {% else %}
+        {% url 'logout' as logout_url %}
+        <li class="nav-item mx-0 mx-lg-1">
+          <a
+            class="nav-link py-3 px-0 px-lg-3 rounded {% if request.path == logout_url %}active{% endif %}"
+            href="{{logout_url}}"
+            >Logout</a
+          >
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

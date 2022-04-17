@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h1 class="text-center">Login</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            aria-describedby="username"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+        {% url 'register' as register_url %}
+        <a class="btn btn-link" href="{{register_url}}" role="button">Create an account</a>
+      </form>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+{% endblock %}

@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+        <form class="row g-3" action="" method="POST">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="select-form" class="form-label">Rating</label>
+                <select id="select-form" name="score" class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10" selected>10</option>
+                    </select>
+            </div>
+            <div class="col-md-12">
+                <label for="validationDefault02" class="form-label">Comment</label>
+                <textarea type="text" class="form-control" id="validationDefault02" name="comment" required></textarea>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit review</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+{% csrf_token %}
+<div class="row py-5 px-4">
+  <div class="col-md-5 mx-auto">
+    <!-- Profile widget -->
+    <div class="bg-white shadow rounded overflow-hidden">
+      <div class="px-4 py-3">
+        <h5 class="mb-0">About</h5>
+        <div class="p-4 rounded shadow-sm bg-light">
+          <p class="font-italic mb-0">{{user.Name}}</p>
+          <p class="font-italic mb-0">{{user.Age}}</p>
+          {% comment %} <p class="font-italic mb-0">Photographer</p> {% endcomment %}
+        </div>
+      </div>
+      <div class="py-4 px-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          {% comment %}
+          <a href="#" class="btn btn-link text-muted">Show all</a>
+          {% endcomment %}
+        </div>
+        <div class="row">
+          <div class="col-lg-6 mb-2 pl-lg-1">
+            <h5 class="mb-2">Owned Games</h5>
+            <div class="list-group">
+              {% for game in profile.Owns %}
+              <a href="/game/{{game.GameId}}" class="list-group-item list-group-item-action">
+                {{ game.Title }}
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="col-lg-6 mb-2 pl-lg-1">
+            <h5 class="mb-2">Favorited Games</h5>
+            <div class="list-group">
+              {% for game in profile.Favorites %}
+              <a href="/game/{{game.GameId}}" class="list-group-item list-group-item-action">
+                {{ game.Title }}
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
