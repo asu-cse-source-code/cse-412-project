@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<h1 class="text-center">Recent Games</h1>
+
+<h1 class="text-center">{% if search %}Search Results{% else %}Recent Games{% endif %}</h1>
+
 <div class="container">
+  {% if games %}
     <div class="row justify-content-md-center gx-5 gy-5">
         {% for game in games %}
         <div class="col col-lg-6">
@@ -15,6 +18,8 @@
               </div>
           </div>
         {% endfor %}
-      
+        {% else %}
+        <p class="text-center">No results found.. Try searching something else!</p>
+        {% endif %}
   </div>
 {% endblock %}

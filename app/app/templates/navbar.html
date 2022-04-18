@@ -3,6 +3,9 @@
   id="mainNav"
 >
   <div class="container">
+    {% url 'login' as login_url %}
+    {% url 'register' as register_url %}
+    {% url 'logout' as logout_url %}
     <a class="navbar-brand" href="/">GameSpot</a>
     <button
       class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
@@ -16,13 +19,15 @@
       Menu
       <i class="fas fa-bars"></i>
     </button>
-
-    <form class="d-inline-flex col col-lg-6 pt-2" method=POST action="">
-      <input class="form-control me-2" type="search" placeholder="Find a new game!" aria-label="Search" name="searched">
-      <button class="btn btn-primary" type="submit">Search</button>
-    </form>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
+        {% if request.path != login_url and request.path != register_url %}
+        <form class="d-inline-flex col col-lg-6 pt-2" method=POST action="">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Find a new game!" aria-label="Search" name="searched">
+          <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        {% endif %}
         {% url 'profile' as profile_url %}
         <li class="nav-item mx-0 mx-lg-1">
           <a
@@ -32,7 +37,6 @@
           >
         </li>
         {% if not user.is_authenticated %}
-        {% url 'login' as login_url %}
         <li class="nav-item mx-0 mx-lg-1">
           <a
             class="nav-link py-3 px-0 px-lg-3 rounded {% if request.path == login_url %}active{% endif %}"
@@ -41,7 +45,6 @@
           >
         </li>
         {% else %}
-        {% url 'logout' as logout_url %}
         <li class="nav-item mx-0 mx-lg-1">
           <a
             class="nav-link py-3 px-0 px-lg-3 rounded {% if request.path == logout_url %}active{% endif %}"

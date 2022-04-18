@@ -1,8 +1,10 @@
+from cgitb import lookup
 from django.forms import model_to_dict
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
 from game.serializers import GameSerializer
 from game.models import Game
@@ -27,15 +29,34 @@ class Profile(APIView):
         queryset = UserSerializer(request.user, many=False)
         return Response({"profile": queryset.data})
 
+    def post(self, request):
+        searched = request.POST["searched"]
+        return HttpResponseRedirect(f"/?search={searched}")
+
 
 class Home(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = "index.html"
 
     def get(self, request):
-        # Get the most recent 5
-        queryset = GameSerializer(Game.objects.all()[:4], many=True)
-        return Response({"games": queryset.data})
+        query = request.GET.get("search")
+
+        if query is not None:
+            search = True
+            lookups = Q(Title__icontains=query)
+            queryset = GameSerializer(
+                Game.objects.filter(lookups).distinct(), many=True
+            )
+        else:
+            search = False
+            # Get the most recent 5
+            queryset = GameSerializer(Game.objects.all()[:4], many=True)
+
+        return Response({"games": queryset.data, "search": search})
+
+    def post(self, request):
+        searched = request.POST["searched"]
+        return HttpResponseRedirect(f"/?search={searched}")
 
 
 class Login(APIView):
@@ -144,6 +165,10 @@ class Games(APIView):
             return redirect("error")
 
     def post(self, request, id):
+        if "searched" in request.POST:
+            searched = request.POST["searched"]
+            return HttpResponseRedirect(f"/?search={searched}")
+
         game = Game.objects.get(GameId=id)
         user = request.user
         print(request.POST)
@@ -179,3 +204,7 @@ class NotFound(APIView):
 
     def get(self, request):
         return Response()
+
+    def post(self, request):
+        searched = request.POST["searched"]
+        return HttpResponseRedirect(f"/?search={searched}")
