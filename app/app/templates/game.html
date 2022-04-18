@@ -38,11 +38,11 @@
                 <div class="col col-lg-4">
                   <p class="card-text"><strong>Price: </strong>{{game.Price}}</p>
                 </div>
-                <div class="col col-lg-4">
+                {% comment %} <div class="col col-lg-4">
                   <p class="card-text"><strong>Game length: </strong>{{game.LengthOfTime}} hour{% if game.LengthOfTime > 1 %}s{% endif %}</p>
-                </div>
+                </div> {% endcomment %}
                 <div class="col col-lg-4">
-                  <p class="card-text"><strong>Console: </strong>{{game.Console}}</p>
+                  <p class="card-text"><strong>Console: </strong>{{game.Console|join:" , "}}</p>
                 </div>
                 <div class="col col-lg-4">
                   <p class="card-text"><strong>Studio: </strong>{{game.Studio}}</p>
