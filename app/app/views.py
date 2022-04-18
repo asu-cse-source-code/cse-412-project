@@ -43,7 +43,7 @@ class Home(APIView):
 
         if query is not None:
             search = True
-            lookups = Q(Title__icontains=query)
+            lookups = Q(Title__icontains=query) | Q(Description__icontains=query)
             queryset = GameSerializer(
                 Game.objects.filter(lookups).distinct(), many=True
             )
