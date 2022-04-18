@@ -68,14 +68,16 @@ def add_games(request):
     try:
         status = 201
         all_games = []
-        body = json.loads(request.body)
-        for game in body:
-            awards = get_awards(game)
-            game.pop("Won", None)
+        for game in request.data:
+            if Game.objects.filter(Title=game["Title"]).exists():
+                print(f"{game['Title']} already exists!")
+                continue
+            # awards = get_awards(game)
+            # game.pop("Won", None)
             game["Studio"] = get_studio(game["Studio"])
             new_game = Game(**game)
             new_game.save()
-            set_awards(new_game, awards)
+            # set_awards(new_game, awards)
             all_games.append(new_game)
         serializer = GameSerializer(all_games, many=True)
         response = serializer.data

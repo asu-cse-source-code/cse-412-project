@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 
 from .serializers import UserSerializer
 from .models import User
@@ -8,6 +8,26 @@ from .models import User
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
+
+
+@api_view(["POST"])
+def login_user(request):
+    body = json.loads(request.body)
+    username = body["username"]
+    password = body["password"]
+    user = authenticate(request._request, username=username, password=password)
+    if user is not None:
+        status = 200
+        login(request._request, user)
+        # Redirect to a success page.
+        serializer = UserSerializer(user, many=False)
+        response = serializer.data
+    else:
+        # Return an 'invalid login' error message.
+        response = {"Error": "No user with that id exists"}
+        status = 404
+
+    return Response(data=response, content_type="text/json", status=status)
 
 
 @api_view(["GET"])
