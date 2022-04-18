@@ -9,11 +9,9 @@
         <div class="col col-lg-6">
             <div class="card" >
                 <div class="card-body">
-                  <h5 class="card-title">{{game.Title}}</h5>
+                  <h5 class="card-title"><a href="/game/{{game.GameId}}" class="stretched-link">{{game.Title}}</a></h5>
                   <h6 class="card-subtitle mb-2 text-muted">{{game.Genre}}</h6>
                   <p class="card-text">{{ game.Description|truncatechars:250 }}</p>
-                  <a href="/game/{{game.GameId}}" class="card-link">View More</a>
-                  {% comment %} <a href="#" class="card-link">Another link</a> {% endcomment %}
                 </div>
               </div>
           </div>
