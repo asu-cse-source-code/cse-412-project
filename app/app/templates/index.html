@@ -1,18 +1,37 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<div class="col text-center pb-2">
-<div class="dropdown">
-  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-    Console
-  </a>
 
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">Nintendo</a></li>
-    <li><a class="dropdown-item" href="#">PC</a></li>
-    <li><a class="dropdown-item" href="#">Playstation</a></li>
-    <li><a class="dropdown-item" href="#">Xbox</a></li>
-  </ul>
+<div class="container text-center">
+  <div class="row justify-content-md-center">
+    <div class="col-sm-1 dropdown">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        Console
+      </a>
+          
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        {% with 'Nintendo PC Playstation Xbox' as list %}
+        {% for i in list.split %}
+        <li><a class="dropdown-item" href="?search={{searched}}&console={{i}}">{{i}}</a></li>
+      {% endfor %}
+      {% endwith %}
+      </ul>
+    </div>
+  
+    <div class="col-sm-1 dropdown">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        Genre
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        {% with 'Action Fighting Indie Puzzle Racing RPG RTS Sooter Simulator Sport Strategy' as list %}
+        {% for i in list.split %}
+        <li><a class="dropdown-item" href="?search={{searched}}&genre={{i}}">{{i}}</a></li>
+      {% endfor %}
+      {% endwith %}
+      </ul>
+    </div>
+  </div>
 </div>
-</div>
+
 <h1 class="text-center">{% if search %}Search Results{% else %}Recent Games{% endif %}</h1>
 
 <div class="container">
