@@ -1,6 +1,5 @@
-from cgitb import lookup
-from django.forms import model_to_dict
-from django.shortcuts import redirect, render
+from django.core.paginator import Paginator
+from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -59,13 +58,17 @@ class Home(APIView):
 
         if console is None and query is None and genre is None:
             # Get the most recent 5
-            queryset = GameSerializer(Game.objects.all()[:4], many=True)
+            queryset = GameSerializer(Game.objects.all(), many=True)
         else:
             queryset = GameSerializer(game, many=True)
 
+        paginator = Paginator(queryset.data, 6)  # Show 6 per page.
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+
         return Response(
             {
-                "games": queryset.data,
+                "games": page_obj,
                 "search": search,
                 "searched": query,
                 "genre": genre,
