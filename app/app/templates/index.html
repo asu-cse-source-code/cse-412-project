@@ -1,5 +1,18 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
+<div class="col text-center">
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle button-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    Console
+  </a>
 
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="#">Nintendo</a></li>
+    <li><a class="dropdown-item" href="#">PC</a></li>
+    <li><a class="dropdown-item" href="#">Playstation</a></li>
+    <li><a class="dropdown-item" href="#">Xbox</a></li>
+  </ul>
+</div>
+</div>
 <h1 class="text-center">{% if search %}Search Results{% else %}Recent Games{% endif %}</h1>
 
 <div class="container">
