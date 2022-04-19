@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container">
     <div class="row justify-content-md-center g-2">
-        <div class="col col-sm-4">
+        <div class="col col-sm-auto">
             {% if user.is_authenticated %}
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               Review {{game.Title}}
@@ -28,6 +28,7 @@
             <a class="btn btn-link" href="{{login_url}}" role="button">Login to leave a review</a>
             {% endif %}
           </div>
+          <div class="col col-sm-12"></div>
       <div class="col col-sm-10">
         <div class="card" >
             <div class="card-body">
