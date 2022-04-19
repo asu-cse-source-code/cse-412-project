@@ -40,19 +40,38 @@ class Home(APIView):
 
     def get(self, request):
         query = request.GET.get("search")
+        console = request.GET.get("console")
+        genre = request.GET.get("genre")
+        search = False
+
+        game = Game.objects.all()
 
         if query is not None:
             search = True
             lookups = Q(Title__icontains=query) | Q(Description__icontains=query)
-            queryset = GameSerializer(
-                Game.objects.filter(lookups).distinct(), many=True
-            )
-        else:
-            search = False
+            game = game.filter(lookups).distinct()
+        if console is not None:
+            lookups = Q(Console__icontains=console)
+            game = game.filter(lookups).distinct()
+        if genre is not None:
+            lookups = Q(Genre__icontains=genre)
+            game = game.filter(lookups).distinct()
+
+        if console is None and query is None and genre is None:
             # Get the most recent 5
             queryset = GameSerializer(Game.objects.all()[:4], many=True)
+        else:
+            queryset = GameSerializer(game, many=True)
 
-        return Response({"games": queryset.data, "search": search})
+        return Response(
+            {
+                "games": queryset.data,
+                "search": search,
+                "searched": query,
+                "genre": genre,
+                "console": console,
+            }
+        )
 
     def post(self, request):
         searched = request.POST["searched"]
