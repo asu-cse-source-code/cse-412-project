@@ -154,6 +154,7 @@ class Games(APIView):
             if Game.objects.filter(GameId=id).exists():
                 game = Game.objects.get(GameId=id)
                 serializer = GameSerializer(game, many=False)
+                print(serializer.data)
                 favorited = False
                 review = None
                 owned = False

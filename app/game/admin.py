@@ -11,7 +11,7 @@ class GameAdmin(admin.ModelAdmin):
 
     list_display = ("Title", "Genre", "Price", "get_studio")
     list_display_links = ("Title",)
-    search_fields = ("Title", "Genre", "get_studio")
+    search_fields = ("Title", "Genre")
     list_per_page = 25
 
 

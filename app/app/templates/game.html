@@ -58,6 +58,13 @@
                   {% else %}
                 <div class="col col-lg-4"></div>
                 {% endif %}
+                {% if game.Awards|length > 0 %}
+                  <div class="col col-lg-4">
+                    <p class="card-text"><strong>Awards: </strong>{{game.Awards|join:" , "}}</p>
+                  </div>
+                  {% else %}
+                <div class="col col-lg-4"></div>
+                  {% endif %}
                   {% if not favorited %}
                 <div class="col col-lg-auto">
                     <form method="POST">

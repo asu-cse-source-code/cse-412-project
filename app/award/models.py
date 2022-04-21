@@ -5,8 +5,10 @@ from game.models import Game
 
 
 class Award(models.Model):
-    Game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    Organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    Game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="Awards")
+    Organization = models.ForeignKey(
+        Organization, on_delete=models.CASCADE, related_name="reviews"
+    )
     Name = models.CharField(max_length=255)
     Year = models.CharField(max_length=10)
 
