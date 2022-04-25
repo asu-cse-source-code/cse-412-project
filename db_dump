@@ -1,0 +1,1792 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.5
+-- Dumped by pg_dump version 13.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO gaming_admin;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id bigint NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO gaming_admin;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO gaming_admin;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: award_award; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.award_award (
+    id bigint NOT NULL,
+    "Name" character varying(255) NOT NULL,
+    "Year" character varying(10) NOT NULL,
+    "Game_id" uuid NOT NULL,
+    "Organization_id" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.award_award OWNER TO gaming_admin;
+
+--
+-- Name: award_award_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.award_award_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.award_award_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: award_award_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.award_award_id_seq OWNED BY public.award_award.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id bigint NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO gaming_admin;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO gaming_admin;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.django_migrations (
+    id bigint NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO gaming_admin;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO gaming_admin;
+
+--
+-- Name: game_game; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.game_game (
+    "GameId" uuid NOT NULL,
+    "Title" character varying(255) NOT NULL,
+    "LengthOfTime" integer,
+    "Genre" character varying(255) NOT NULL,
+    "Price" numeric(8,2) NOT NULL,
+    "Console" character varying(255)[] NOT NULL,
+    "Description" text NOT NULL,
+    "Reviews" integer NOT NULL,
+    "Studio_id" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.game_game OWNER TO gaming_admin;
+
+--
+-- Name: organization_organization; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.organization_organization (
+    "OrgName" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.organization_organization OWNER TO gaming_admin;
+
+--
+-- Name: review_review; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.review_review (
+    id bigint NOT NULL,
+    "Comment" character varying(255),
+    "Score" integer,
+    "Game_id" uuid,
+    "User_id" bigint
+);
+
+
+ALTER TABLE public.review_review OWNER TO gaming_admin;
+
+--
+-- Name: review_review_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.review_review_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.review_review_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: review_review_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.review_review_id_seq OWNED BY public.review_review.id;
+
+
+--
+-- Name: studio_studio; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.studio_studio (
+    "SName" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.studio_studio OWNER TO gaming_admin;
+
+--
+-- Name: user_user; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.user_user (
+    id bigint NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    "Name" character varying(255),
+    "Age" integer,
+    is_admin boolean NOT NULL,
+    username character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.user_user OWNER TO gaming_admin;
+
+--
+-- Name: user_user_Favorites; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public."user_user_Favorites" (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    game_id uuid NOT NULL
+);
+
+
+ALTER TABLE public."user_user_Favorites" OWNER TO gaming_admin;
+
+--
+-- Name: user_user_Favorites_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public."user_user_Favorites_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."user_user_Favorites_id_seq" OWNER TO gaming_admin;
+
+--
+-- Name: user_user_Favorites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public."user_user_Favorites_id_seq" OWNED BY public."user_user_Favorites".id;
+
+
+--
+-- Name: user_user_Owns; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public."user_user_Owns" (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    game_id uuid NOT NULL
+);
+
+
+ALTER TABLE public."user_user_Owns" OWNER TO gaming_admin;
+
+--
+-- Name: user_user_Owns_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public."user_user_Owns_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."user_user_Owns_id_seq" OWNER TO gaming_admin;
+
+--
+-- Name: user_user_Owns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public."user_user_Owns_id_seq" OWNED BY public."user_user_Owns".id;
+
+
+--
+-- Name: user_user_groups; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.user_user_groups (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.user_user_groups OWNER TO gaming_admin;
+
+--
+-- Name: user_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.user_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_user_groups_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: user_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.user_user_groups_id_seq OWNED BY public.user_user_groups.id;
+
+
+--
+-- Name: user_user_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.user_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_user_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: user_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.user_user_id_seq OWNED BY public.user_user.id;
+
+
+--
+-- Name: user_user_user_permissions; Type: TABLE; Schema: public; Owner: gaming_admin
+--
+
+CREATE TABLE public.user_user_user_permissions (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.user_user_user_permissions OWNER TO gaming_admin;
+
+--
+-- Name: user_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: gaming_admin
+--
+
+CREATE SEQUENCE public.user_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_user_user_permissions_id_seq OWNER TO gaming_admin;
+
+--
+-- Name: user_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gaming_admin
+--
+
+ALTER SEQUENCE public.user_user_user_permissions_id_seq OWNED BY public.user_user_user_permissions.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: award_award id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.award_award ALTER COLUMN id SET DEFAULT nextval('public.award_award_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: review_review id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.review_review ALTER COLUMN id SET DEFAULT nextval('public.review_review_id_seq'::regclass);
+
+
+--
+-- Name: user_user id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user ALTER COLUMN id SET DEFAULT nextval('public.user_user_id_seq'::regclass);
+
+
+--
+-- Name: user_user_Favorites id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Favorites" ALTER COLUMN id SET DEFAULT nextval('public."user_user_Favorites_id_seq"'::regclass);
+
+
+--
+-- Name: user_user_Owns id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Owns" ALTER COLUMN id SET DEFAULT nextval('public."user_user_Owns_id_seq"'::regclass);
+
+
+--
+-- Name: user_user_groups id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_groups ALTER COLUMN id SET DEFAULT nextval('public.user_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: user_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.user_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add content type	4	add_contenttype
+14	Can change content type	4	change_contenttype
+15	Can delete content type	4	delete_contenttype
+16	Can view content type	4	view_contenttype
+17	Can add session	5	add_session
+18	Can change session	5	change_session
+19	Can delete session	5	delete_session
+20	Can view session	5	view_session
+21	Can add award	6	add_award
+22	Can change award	6	change_award
+23	Can delete award	6	delete_award
+24	Can view award	6	view_award
+25	Can add game	7	add_game
+26	Can change game	7	change_game
+27	Can delete game	7	delete_game
+28	Can view game	7	view_game
+29	Can add organization	8	add_organization
+30	Can change organization	8	change_organization
+31	Can delete organization	8	delete_organization
+32	Can view organization	8	view_organization
+33	Can add review	9	add_review
+34	Can change review	9	change_review
+35	Can delete review	9	delete_review
+36	Can view review	9	view_review
+37	Can add studio	10	add_studio
+38	Can change studio	10	change_studio
+39	Can delete studio	10	delete_studio
+40	Can view studio	10	view_studio
+41	Can add user	11	add_user
+42	Can change user	11	change_user
+43	Can delete user	11	delete_user
+44	Can view user	11	view_user
+\.
+
+
+--
+-- Data for Name: award_award; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.award_award (id, "Name", "Year", "Game_id", "Organization_id") FROM stdin;
+5	Game Of The Year	2010	af7d0ef9-bfd9-4af3-92b0-1e3975f17755	IGN
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2022-04-12 16:04:28.079745-07	2	Ronald Walker	2	[{"changed": {"fields": ["Owns"]}}]	11	1
+2	2022-04-12 16:04:43.200047-07	2	Ronald Walker	2	[{"changed": {"fields": ["Owns"]}}]	11	1
+3	2022-04-12 16:04:50.088507-07	2	Ronald Walker	2	[{"changed": {"fields": ["Favorites"]}}]	11	1
+4	2022-04-12 16:05:51.887611-07	3	Jason Porter	2	[{"changed": {"fields": ["Owns", "Favorites"]}}]	11	1
+5	2022-04-12 16:06:08.474262-07	5	Jacob Luta	2	[{"changed": {"fields": ["Owns", "Favorites"]}}]	11	1
+6	2022-04-12 16:06:20.518847-07	6	Sammy Aimes	2	[{"changed": {"fields": ["Owns"]}}]	11	1
+7	2022-04-13 15:36:58.482127-07	cf0000b3-0b09-4c52-849a-5ff70d460ecd	Elden Ring	2	[{"changed": {"fields": ["Reviews"]}}]	7	1
+8	2022-04-18 12:53:38.261931-07	e301fd92-6fbf-436c-9fbf-ec94a4e71708	The Witcher 3: Wild Hunt	3		7	1
+9	2022-04-18 12:53:38.265165-07	d90ace47-10f8-4872-8d5a-fdea13de174e	ET the extra terrestrial	3		7	1
+10	2022-04-18 12:53:38.266082-07	d70e3949-cc7b-4f0b-ad71-315c270aec40	Halo 3	3		7	1
+11	2022-04-18 12:53:38.266919-07	d653e21c-c979-429c-8d8f-b3740611ff47	Super Mario Galaxy	3		7	1
+12	2022-04-18 12:53:38.267695-07	cf0000b3-0b09-4c52-849a-5ff70d460ecd	Elden Ring	3		7	1
+13	2022-04-18 12:53:38.26849-07	337d235e-474d-44b7-adab-289e4c5cc9e3	Red Dead Redemption	3		7	1
+14	2022-04-18 12:53:38.269399-07	1b0c3517-9ccc-4132-80cc-1b3f8674b6bc	God Of War	3		7	1
+15	2022-04-18 12:53:38.270319-07	17cc325b-caa0-4535-9425-cc48908f100c	Skyrim	3		7	1
+16	2022-04-18 12:53:38.271359-07	0bd7438d-eb2d-4b29-bc45-b4a002d18edf	Animal Crossing: New Horizon	3		7	1
+17	2022-04-18 12:53:38.272249-07	0775d85a-dde4-4956-93b7-ca21883bfbd5	Monster Hunter	3		7	1
+18	2022-04-21 15:09:27.28456-07	af7d0ef9-bfd9-4af3-92b0-1e3975f17755	Red Dead Redemption	1	[{"added": {}}]	7	1
+19	2022-04-21 15:11:30.059092-07	5	Award object (5)	1	[{"added": {}}]	6	1
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	contenttypes	contenttype
+5	sessions	session
+6	award	award
+7	game	game
+8	organization	organization
+9	review	review
+10	studio	studio
+11	user	user
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	studio	0001_initial	2022-04-12 15:43:07.549103-07
+2	game	0001_initial	2022-04-12 15:43:07.560697-07
+3	contenttypes	0001_initial	2022-04-12 15:43:07.566551-07
+4	contenttypes	0002_remove_content_type_name	2022-04-12 15:43:07.572408-07
+5	auth	0001_initial	2022-04-12 15:43:07.596715-07
+6	auth	0002_alter_permission_name_max_length	2022-04-12 15:43:07.600475-07
+7	auth	0003_alter_user_email_max_length	2022-04-12 15:43:07.604733-07
+8	auth	0004_alter_user_username_opts	2022-04-12 15:43:07.608548-07
+9	auth	0005_alter_user_last_login_null	2022-04-12 15:43:07.612766-07
+10	auth	0006_require_contenttypes_0002	2022-04-12 15:43:07.614116-07
+11	auth	0007_alter_validators_add_error_messages	2022-04-12 15:43:07.618659-07
+12	auth	0008_alter_user_username_max_length	2022-04-12 15:43:07.624202-07
+13	auth	0009_alter_user_last_name_max_length	2022-04-12 15:43:07.628341-07
+14	auth	0010_alter_group_name_max_length	2022-04-12 15:43:07.633726-07
+15	auth	0011_update_proxy_permissions	2022-04-12 15:43:07.63945-07
+16	auth	0012_alter_user_first_name_max_length	2022-04-12 15:43:07.643891-07
+17	user	0001_initial	2022-04-12 15:43:07.685692-07
+18	admin	0001_initial	2022-04-12 15:43:07.701076-07
+19	admin	0002_logentry_remove_auto_add	2022-04-12 15:43:07.709227-07
+20	admin	0003_logentry_add_action_flag_choices	2022-04-12 15:43:07.717314-07
+21	organization	0001_initial	2022-04-12 15:43:07.723779-07
+22	award	0001_initial	2022-04-12 15:43:07.740165-07
+23	review	0001_initial	2022-04-12 15:43:07.753493-07
+24	review	0002_initial	2022-04-12 15:43:07.763847-07
+25	sessions	0001_initial	2022-04-12 15:43:07.772145-07
+26	review	0003_alter_review_user	2022-04-13 15:50:42.169745-07
+27	review	0004_alter_review_game	2022-04-13 17:03:20.604319-07
+28	game	0002_alter_game_lengthoftime	2022-04-18 12:17:29.388452-07
+29	game	0003_alter_game_console	2022-04-18 12:53:48.302128-07
+30	award	0002_alter_award_game_alter_award_organization	2022-04-21 14:56:34.436404-07
+31	award	0003_alter_award_game	2022-04-21 15:13:34.429135-07
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+t16gn677wu66351qyrq454c7i3z3qdrh	.eJxVjE0OwiAYRO_C2hBo-XXp3jOQDxilaiAp7cp4d9ukC93MYt6bebNA61LC2jGHKbMzk-z020VKT9Qd5AfVe-Op1WWeIt8VftDOry3jdTncv4NCvWxrGBEHEoAeR-8gb6OG2EJZBZGMSyqBnBQwCdaR1EPWjqxXCtKTAvt8AeM0N9Y:1ngXcg:Rbsli1-hGWXbrlTAiJqCOxxlIVoUWb-kx1IxIObSQg8	2022-05-02 13:05:22.481654-07
+o4c9tbv8wm5z03fkzii6yr25imdumg6s	.eJxVjE0OwiAYRO_C2hBo-XXp3jOQDxilaiAp7cp4d9ukC93MYt6bebNA61LC2jGHKbMzk-z020VKT9Qd5AfVe-Op1WWeIt8VftDOry3jdTncv4NCvWxrGBEHEoAeR-8gb6OG2EJZBZGMSyqBnBQwCdaR1EPWjqxXCtKTAvt8AeM0N9Y:1nhg83:4OeV3UghaZHLas4LpcaAJlYSyTgnIR1HP5WD3xAwGlc	2022-05-05 16:22:27.081554-07
+\.
+
+
+--
+-- Data for Name: game_game; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.game_game ("GameId", "Title", "LengthOfTime", "Genre", "Price", "Console", "Description", "Reviews", "Studio_id") FROM stdin;
+da10cb46-8a49-4e36-84a2-bf8226455a27	Anstoss 3	\N	Simulator	60.00	{"PC (Microsoft Windows)"}	2000 wurde mit Anstoss 3 die zweite Fortsetzung veröffentlicht. Innerhalb eines Jahres verkaufte es sich mehr als 200.000 Mal. Von den Spielemagazinen wurde es mit guten Wertungen bedacht (z. B. PC Player 87 %, Gamestar 88 %, PC Games 86 %).\nJedoch war es zu Beginn geradezu gefüllt mit Bugs, was von der Spielergemeinde kritisiert wurde. Dennoch wurde es von den Anstoss-Fans mit Begeisterung aufgenommen, da es die wichtigsten Elemente von Anstoss 2 Gold enthielt und diese noch weiter vertiefen konnte.\nAls besonders gelungen gilt die 3D-Spieldarstellung. Der Spieler konnte sich ein komplettes Spiel seines Teams reduziert auf neun Minuten ansehen. Auch der Szenenmodus galt als revolutionär, da die Szenen nicht, wie in den Vorgängerteilen, vorberechnet wurden. Kommentiert wurden die Spielszenen durch den bekannten Fußballkommentator Günther Koch.\nAuch neu war die Umsetzung des Vereinsgeländes. Von Apfelbäumen über Konditionsparcours und Doping-Labor bis hin zu Wolkenkratzern konnte der Spieler sein Vereinsgelände mit Gebäuden, Gegenständen und Lebewesen mit und ohne Nutzen erweitern.\nMit der Veröffentlichung des finalen Patches auf Version 1.40 wurde es nahezu bugfrei und konnte die Anstoss-Spieler überzeugen. Insgesamt wurden bis heute über eine Million Exemplare von Anstoss 3 verkauft und machen es damit zu einem der erfolgreichsten PC-Spiele Deutschlands. Trotz seines Alters wird Anstoss 3 durch die große Spieltiefe zusammen mit einem gelungenen Text- und 3D-Modus als bester Teil der Anstoss-Reihe angesehen. Dass Anstoss 3 auch heute noch sehr beliebt ist, hängt auch mit dem Multiplayermodus zusammen. So wird es bis zu 4 Spielern ermöglicht, im Netzwerk gegeneinander anzutreten.	0	Ascaron Entertainment
+8834fa2e-c8b6-4d81-ab1c-9d87a4b5298a	Das Balkonzimmer	\N	Simulator	60.00	{"PC (Microsoft Windows)"}	Discover the balcony room in a completely new 3D world. \nMove with your unique character. \nDiscover the expanse of the balcony room, its facets and niches. \nShoot with your weapon and move objects through the game's physics! \nFling them off the balcony or across the room, whatever you want! \nYou can experience the game in first person as well as in third person, depending on your wishes.	0	FLO-server
+18ba6cec-e493-46d9-9c29-e331656874cb	Mystery Case Files: Dire Grove	\N	Puzzle	60.00	{"PC (Microsoft Windows)",Mac,"Nintendo 3DS",iOS}	Mystery Case Files: Dire Grove is an interactive movie puzzle adventure game developed by Big Fish Studios, and distributed by Big Fish Games. It is the sixth installment in the Mystery Case Files series. The game is available exclusively at Big Fish Games website. The Mystery Case Files franchise is the number one brand in casual games and has sold more than 2.5 million units to date.	0	Big Fish Games
+8a78ab4b-c57f-4d6b-9dfb-6070bec86d1f	Herc's Adventures	\N	Adventure	60.00	{PlayStation,"Sega Saturn"}	Ahhh...ancient Greece. A fertile land, full of wine, women, and some of the best gyros you'll ever taste. Thanks to Persephone, the Greek goddess of spring and fertility, Greece is a wonderful paradise. But now the lord of the Underworld, Hades, has gone and kidnapped Persephone, causing the land to slowly wither away! Zeus, the King of the Gods, needs help in saving her, so who do you call? None other than three of the greatest warriors in the land! You can choose from the big 'n' buff Herc, the super swift Atlanta, or the young and street-smart Jason, each of whom have their own weapons and strengths. The game's 40 levels include many further variations and pastiches of Greek mythology and legend. It's all up to you to rescue Persephone and give Hades a beatdown he'll never forget!	0	Big Ape Productions
+ec06abd2-ff1a-40dc-aa6b-f914ca2eeded	Mega Man Legacy Collection 2	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 4","Xbox One","Nintendo Switch"}	A compilation of four timeless adventures in one package, Mega Man Legacy Collection 2 features the most recent entries in the classic side-scrolling series. The collection also includes a Museum jam-packed with history and production art, challenge remix stages for long-time fans, and first-timer friendly options like added armour and checkpoint saves for easy reload.\n\nJourney through the later entries in the series with these four titles: Mega Man 7 introduced mysterious rival Bass and his companion Treble, while Mega Man 8 featured the series’ first impressively animated and fully voiced cutscenes; Mega Man 9 marked the series’ return to its roots with 8-bit visuals, music, and gameplay; Mega Man 10 retained these features and included three playable character options.	0	Capcom
+8161d6a1-2a49-4034-a73b-e75617fc5534	Sonic Mania Plus	\N	Platform	60.00	{"PlayStation 4","Xbox One","Nintendo Switch"}	Sonic Mania Plus is an expanded version of Sonic Mania.\n\nIt's the ultimate Sonic celebration! Sonic returns in a new 2D platforming high speed adventure, and he's not alone!\n\nDeveloped in collaboration between SEGA, Christian Whitehead, Headcannon, and PagodaWest Games, experience new zones and remixed classic levels with Sonic, Tails, and Knuckles!	0	PagodaWest Games
+39ed8ffb-5280-4c16-9e09-6cbee0179aed	Mass Effect 3: Citadel	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360"}	When a sinister conspiracy targets Commander Shepard, you and your team must uncover the truth, through battles and intrigue that range from the glamour of the Citadel's Wards to the top-secret Council Archives. Uncover the truth and fight alongside your squad – as well as the cast from the original Mass Effect and Mass Effect 2, including Urdnot Wrex!	0	BioWare
+79463af2-9243-419b-9c11-e0838e6544f7	Bioshock Infinite: Burial at Sea	\N	Shooter	60.00	{Linux,"PC (Microsoft Windows)","PlayStation 3","Xbox 360",Mac,"PlayStation 4","Xbox One","Nintendo Switch"}	Come back to Rapture in a story that brings Booker and Elizabeth to the underwater city on the eve of its fall from grace. Developed by Irrational Games, the studio behind the original BioShock and BioShock Infinite, this DLC features Rapture as you’ve never seen it before—a shining jewel at the bottom of the ocean, built almost entirely from scratch in the BioShock Infinite engine. The combat experience has been rebalanced and reworked with a greater emphasis on stealth and resource management to give the player a combat experience that merges the best parts of BioShock and BioShock Infinite. It includes a new weapon, an old favorite weapon from the original BioShock as well as the return of the weapon wheel, a new Plasmid, new Gear and Tears.	0	2K Games
+6e28f53d-7131-4ff2-ba11-8354aab6a46d	CLANNAD	\N	Adventure	60.00	{"PC (Microsoft Windows)","PlayStation 2","PlayStation 3","Xbox 360",Android,"PlayStation Portable","PlayStation Vita","PlayStation 4","Legacy Mobile Device","Nintendo Switch"}	Clannad follows the life of Tomoya Okazaki, a high school delinquent who meets many people in his last year at school, including five girls, and helps resolve their individual problems.\n\nThe gameplay of Clannad follows a branching plot line which offers pre-determined scenarios with courses of interaction, and focuses on the appeal of the five female main characters by the player character. The game was ranked as the best-selling PC game sold in Japan for the time of its release, and charted in the national top 50 several more times afterwards.	0	Sekai Project
+d2bc0d4e-2641-43fe-bc36-dad3bbe6e77b	Frozen Free Fall	\N	Puzzle	60.00	{"PlayStation 3","Xbox 360",iOS,"PlayStation 4","Xbox One","Windows Phone"}	A block-matching game based on the 2013 Disney film, Frozen.	0	SuperVillain Studios
+0ac81a2d-9780-470c-a595-845cbc4e7c2b	Wing Commander IV: The Price of Freedom	\N	Simulator	60.00	{"PC (Microsoft Windows)",PlayStation,"PlayStation 3","PC DOS",Mac}	The year is 2673, four years after the Treaty of Torgo and the end of the Kilrathi War. As hostilities died out, more trivial concerns like rebuilding what was lost or dealing with space piracy, became the biggest concerns of the Terran Confederation. Even Christopher "Maverick" Blair, the famous Confed pilot responsible for ending the war, settled down and became a farmer. In these times of peace, humans grew fat and complacent. All good things must end, though. Soon enough, heinous incidents erupted on the outskirts of the Confederation, and humanity was forced to the brink of civil war. Confed HQ needed the best and decided to recall Colonel Blair to active duty. This is where you come in.\n\nWing Commander 4 is one of the greatest space sims of all time, and some even consider it the greatest one of all. It is one of those games that did everything right. This is one of the few games that actually successfully manages to integrate a lot of FMV into the action, mostly because it uses trained film actors and directors. The combat is straightforward, fluid, and entertaining. The characters are as believable and memorable as they come. The orchestrated music -- just perfect. Finally, its enthralling story is both deep and plausible -- a combination that is often lost in modern games. There is simply no reason not to play this game and, once you do start playing, you will find it hard to think of a reason why you should stop.	0	Electronic Arts
+621151b8-2364-4bbc-9e00-0657486154e1	Borderlands 2: Sir Hammerlock vs. the Son of Crawmerax	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360",Mac}	Sir Hammerlock vs. the Son of Crawmerax is the fifth and final Headhunter DLC pack for Borderlands 2.	0	Gearbox Software
+46f27a8f-8e9e-4764-ab97-44d178275130	Borderlands 2: The Horrible Hunger of the Ravenous Wattle Gobbler	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360"}	The Horrible Hunger of the Ravenous Wattle Gobbler is a Thanksgiving-themed DLC for Borderlands 2.	0	Gearbox Software
+82a9e87b-cc43-4df7-a690-d2c9288bc919	SBK 09: Superbike World Championship	\N	Racing	60.00	{"PC (Microsoft Windows)","PlayStation 2","PlayStation 3","Xbox 360","PlayStation Portable"}	The Superbike World Championship comes back to life in SBK09: the teams, the riders, the bikes and the tracks of the world's most thrilling motorbike competition. All the aspects of the Championship have been faithfully reproduced in each aspect of the game: the menu graphics and the TV cameras, the pit, the paddock show, the starting grid and the fascinating "umbrella girls" will contribute to make the gaming experience as involving as possible. \n \nThanks to a series of options it's possible to make the game more faithful to the real thing or easier and more accessible, based on one's preferences. After selecting the preferred riding style between Basic, Arcade, Advanced, Simulation and Extreme, it's possible to adapt the game to each own needs: braking assistance, power braking, front and rear braking at once or separate control, traction control, advanced physics, off track stability control, rider's health, bike damages, tire wear, starting help, automatic transmission, rider position control, official rules, warm up lap, false start penalty, ideal trajectory, riding help. \n \nWhen selecting the Simulation riding model there are many things that need to be taken into consideration: tires wear down, brakes can wear down, the bike can be damaged and the rider can be injured when an accident occurs. It's therefore important to find the best setup for the bike changing suspension setup, handling geometry, braking, chainring length, gear ratio and tire type.	0	Milestone S.r.l.
+916645a2-8e4f-40fe-b419-042e18edb2d2	NHL 09	\N	Sport	60.00	{"PC (Microsoft Windows)","PlayStation 2","PlayStation 3","Xbox 360"}	NHL 09 is the 17th video game in the NHL series released by EA Sports in 2008. Both the Nintendo DS and Wii versions had been planned, but canceled. It was the last installment of the NHL series to be released on Playstation 2 and the last to get a PC release	0	EA Canada
+2f74f693-a0a3-4e0d-b9ba-013c15b302e1	Resident Evil 4 HD	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360","PlayStation 4","Xbox One","Nintendo Switch"}	Resident Evil 4 HD is directly based off the Wii port, having all the new features that the Wii added. Some of the key features of this version are stunning HD graphics running at a smooth 60 frames per second for the first time. It also features a complete visual overhaul to bring this revered title to the highest graphical quality ever. It has been fully optimized for the wide screen, texts have been sharpened and textures have been upgraded on characters, backgrounds and in-game objects.\n\nHowever, it should be noted that the cutscenes of the Separate Ways scenario are not in HD and have had their resolution lowered and placed in sepia format. Aside from the updated HUD, the Movie Browser is fixed to now display real time cut-scenes instead of the PS2 pre-rendered cut-scene, like it was the Wii version. The Mercenaries costumes cheat remain and fully work.	0	Capcom
+a02d2cd5-7984-47b8-9808-e2d287351e07	NBA 2K11	\N	Sport	60.00	{Wii,"PC (Microsoft Windows)","PlayStation 2","PlayStation 3","Xbox 360","PlayStation Portable"}	NBA 2K11 is a basketball video game developed by Visual Concepts and 2K Sports and published by 2K Sports. It was released on October 5, 2010 on the Xbox 360, PlayStation 2, PlayStation 3, PSP, Windows, while the Wii version came out on October 21, 2010. Michael Jordan is the cover athlete of the game and is featured in the game in different ways.NBA 2K11 is the successor to NBA 2K10. \n \nNBA 2K11 is widely considered one of the best sports video games of all time and the best basketball simulation of the seventh generation of video game consoles.	0	2K Sports
+45eaa941-53c4-400b-9101-709b77c5c59a	Borderlands 2: Mad Moxxi and the Wedding Day Massacre	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360",Mac}	Mad Moxxi and the Wedding Day Massacre  is a Headhunter DLC for Borderlands 2.	0	Gearbox Software
+c7916e9b-458c-457f-a0cd-bdf1386af7cd	Borderlands 2: How Marcus Saved Mercenary Day	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360"}	How Marcus Saved Mercenary Day is DLC for Borderlands 2.	0	Gearbox Software
+fdb91715-8099-4438-9ade-4129359c3da2	OF MICE AND SAND -REVISED-	\N	Racing	60.00	{"PC (Microsoft Windows)","PlayStation 4","Nintendo Switch"}	On a desert planet in the farthest reaches of space, mice await your command! Direct their mobile fortress, and seek the legendary city of gold!	0	Arc System Works
+7208ba59-34fd-45f6-86f0-eb0f8511fd92	Gratuitous Space Battles	\N	Real Time Strategy (RTS)	60.00	{Linux,"PC (Microsoft Windows)",Mac}	Who needs backstory? Who needs resource-gathering? Diplomacy is so last year. Gratuitous Space Battles cuts right to the chase of sci-fi strategy games, and deals with large, completely unjustified space battles between huge opposing space fleets.	0	Positech Games
+f228b139-918d-44f8-bd22-c9bf7d0571c7	Angry Birds: POP!	\N	Puzzle	60.00	{Android,iOS}	Let the bubbles fly in a charming bubble shooter downloaded by more than 45 MILLION players! Match and pop colorful bubbles in over 2000 captivating levels, and participate in special events to earn awesome rewards!\n\nJoin Stella, Red, Chuck, Bomb, and the rest of the Angry Birds flock in a bubble shooting adventure bursting with a nearly endless supply of challenges! Grab your trusty slingshot and shoot those bubbles to drop the pigs and rescue the impossibly adorable Hatchlings. With special guests and events popping up all the time, there’s always a fun new challenge to take on. Of course accomplishments come with their fare share of rewards!	0	Rovio Entertainment
+38a6391d-7fb6-431d-bd14-6fac9268478e	Rento Fortune Monolit	\N	Strategy	60.00	{"PC (Microsoft Windows)",Android,iOS,"PlayStation 4","Xbox One","Nintendo Switch"}	Rento is online multiplayer business dice game. Trade lands, build houses, win auctions, roll wheel of fortune, risk in Russian Roulette and most importantly - have fun.\nObtain monopoly over the game board and bankrupt the other players in order to win.	0	LAN Games EOOD
+a3f292ed-07ea-46fe-a7ea-2c86589d381c	King of Thieves	\N	Strategy	60.00	{Android,iOS}	A MMO platformer for iOS and Android, where the player takes the role of a thief whose goal is to steal, collect and combine gems in order to become the wealthiest thief.	0	ZeptoLab
+40c86a1b-8bd9-41b8-8b82-76736bcb29a1	EXAPUNKS	\N	Puzzle	60.00	{Linux,"PC (Microsoft Windows)",Mac}	The year is 1997. You used to be a hacker, but now you have the phage. You made a deal: one hack, one dose. There’s nothing left to lose… except your life.	0	Zachtronics
+d9914f24-65ad-47b4-84be-06273e727049	Pudding Monsters	\N	Puzzle	60.00	{"PC (Microsoft Windows)",Android,iOS,"Legacy Mobile Device","Nintendo Switch"}	Sticky, curious… and determined to get bigger! Pudding Monsters is a deliciously addicting puzzle adventure with wacky characters and innovative stick-‘em-together game-play. It’s casual fun for the whole family!	0	ZeptoLab
+35c85b32-dd6f-4f92-affa-65ecd28aa1e9	My Singing Monsters	\N	Music	60.00	{"PC (Microsoft Windows)",Android,iOS,"PlayStation Vita"}	Welcome to My Singing Monsters! Collect, breed, and listen to your monsters sing. You have never seen a game like this before!\n\nPopulate an island and watch what happens. Create unique havens by landscaping and arranging your creatures. Name them, feed them, make them happy; each monster is loaded with personality. You’ll experience game play and music as never before with this innovative technology!	0	Big Blue Bubble
+9e681ba9-0c20-4e3c-8cf8-28850f17e8bb	Colt Express	\N	Strategy	60.00	{"PC (Microsoft Windows)",iOS}	Plan your hold up, adapt your scheme, get rich and get out! The game inspired from the famous train robbery boardgame!	0	Asmodee Digital
+60333f46-00b9-4f60-a593-231049e68e33	Ni no Kuni: Wrath of the White Witch for Nintendo Switch	\N	Role-playing (RPG)	60.00	{"Nintendo Switch"}	Ni no Kuni: Wrath of the White Witch on Nintendo Switch is the first handheld iteration of the acclaimed title, letting Switch players experience the game in 720p resolution at 30 fps in TV mode at home, or in handheld mode on-the-go.\n\nThe game retains its original dynamic fight system, combining real-time action and turn-based tactical elements, as well as the dozens of locations and hundreds of creatures that comprise the vast universe of Ni no Kuni.\n\nOriginally developed by LEVEL-5, Ni no Kuni: Wrath of the White Witch’s story unfolds through animation storyboarded and created by the legendary Studio Ghibli, with music composed by award-winning musician Joe Hisaishi. Ni no Kuni: Wrath of the White Witch tells the charming yet tragic story of Oliver, a young boy who embarks on a journey to another world in the hope of bringing back his mother following a tragic incident. With a copy of the Wizard’s Companion in hand and his pal Drippy by his side, Oliver must traverse exotic lands to tame familiars, take on malevolent foes, and overcome the countless challenges that stand between him and his mother’s salvation.	0	Level-5
+5bcef92f-4f66-4894-8590-7ba1c90077df	Tiny Metal: Full Metal Rumble	\N	Simulator	60.00	{"PC (Microsoft Windows)","Nintendo Switch"}	Welcome back to the world of TINY METAL, Commander! \n \nTINY METAL: FULL METAL RUMBLE puts you in the boots of three unique commanders bonded by fate, each with their own squads to command and strengthen up on their quest to put an end to a new mysterious, rising threat.	0	Area 35
+335650f3-225a-48fa-b740-64d3b43a5c4d	Defender's Quest: Valley of the Forgotten DX	\N	Role-playing (RPG)	60.00	{"PlayStation 4","Xbox One"}	Defender's Quest is a Tower-Defense/RPG Hybrid focusing on three things: tactical depth, customization, and story.	0	Level Up Labs
+cd903819-af77-47f8-9304-28ddfc378d55	Vertical Drop Heroes HD	\N	Platform	60.00	{"PC (Microsoft Windows)",Mac,"PlayStation Vita","PlayStation 4","Xbox One","Nintendo Switch"}	Vertical Drop Heroes is a procedural platformer RPG hybrid with roguelike elements, where your hero adventures through randomly generated stages. Armed with a variety of skills and traits, you must use your cunning and reflexes to survive the dangers of each stage, until you face the final boss and uncover the truth behind the game!	0	Nerdook Productions
+86fafc22-1fb5-43fe-9d35-d6ae13b8fe3f	Kirby & the Amazing Mirror	\N	Platform	60.00	{Wii,"Game Boy Advance","Nintendo 3DS","Wii U"}	Once again, Kirby must save the kingdom from evil. But this time he'll need some backup. As Kirby, you can call up one of four alter egos for help during your quest. Each character features new copy abilities that range from arrow-shooting to melee moves. Practice your skills in new side games, such as Crackity Hack and Speed Eaters. In addition to new abilities and subgames, Kirby & the Amazing Mirror also introduces new multiplayer modes.	0	Nintendo
+9228efd9-2067-421d-823b-c12a3d900c84	Quake: Mission Pack 2 - Dissolution of Eternity	\N	Shooter	60.00	{"PC (Microsoft Windows)","PC DOS"}	Two new episodes. Sixteen new levels. One way out.\n\nYour journey has led you down a path of no return. The acrid smell of death fills the air. And you know the road ahead may lead to your grave. But Quake, with his insidious, apocalyptic plans, must be crushed. If you fail, evil will shroud the universe for all eternity.	0	id Software
+dda78ae2-af79-49cb-aff2-cfcc9751703f	Kirby Triple Deluxe	\N	Fighting	60.00	{"Nintendo 3DS"}	A side-scrolling installment in the beloved Kirby series, Kirby: Triple Deluxe uses the 3D features of the Nintendo 3DS to allow Kirby to move not only from left to right, but also from the foreground to the background. Kirby also gets an “inhale everything” ability that can be used in specific parts of each stage to help him clear anything blocking his path. As always, Kirby has the power to inhale his enemies and take on their abilities. Each copy ability can let him do a variety of actions and moves, depending on which buttons are pressed.\n\nKirby: Triple Deluxe includes a huge number of collectibles for players to find, from hidden 8-bit keychains to Sun Stones. The game takes advantage of 3DS StreetPass feature to deliver bonus items to players	0	Nintendo
+f8eaf9ee-dd6f-4105-8f02-17a46759e598	Quake: Mission Pack 1 - Scourge of Armagon	\N	Shooter	60.00	{"PC (Microsoft Windows)","PC DOS"}	After defeating Shub-Niggurath, you arrive back at your home base on Earth, but it's not all blue skies and butterflies. Apparently, not all QUAKE forces have been subdued. Chaos ensues as you blast your way through the QUAKE minions and toward the infested gateway. Your only choice is to find the source of evil and shut it down. Without any hesitation, and with more guts than common sense, you leap into a portal of unknown destination.	0	id Software
+4aced858-04fe-43d1-ab7f-d727e634ba4a	Outer Wilds: Echoes of the Eye	\N	Puzzle	60.00	{"PC (Microsoft Windows)","PlayStation 4","Xbox One"}	The Hearthian space program has detected an anomaly that canʼt be attributed to any known location in the solar system. Grab your flashlight and prepare to illuminate the darkest secrets of the Outer Wilds in it's first and only DLC, Outer Wilds: Echoes of the Eye.	0	Mobius Digital
+a0df248d-112f-412a-abfa-cf4e04efa0fb	Kirby: Planet Robobot	\N	Platform	60.00	{"Nintendo 3DS"}	"Harness the power of a mysterious mech to stop ruthless invaders from mechanizing Kirby's home world. Smash through tough obstacles, lift heavy objects with ease, and scan enemies to shape-shift into new Modes with powerful abilities in this supercharged action-platformer!\n\nThat's right—Kirby's Robobot Armor can shape-shift into different modes by scanning enemies to copy their moves—like the new Jet Mode. Not to mention, Kirby™ can copy abilities the old-fashioned way too—by inhaling them! After saving the world, team up with three friends to defeat foes in Team Kirby Clash, an RPG-styled 4-player brawl where you choose from varied roles and level them up."	0	HAL Laboratory
+8d8826b4-8c33-4acc-a447-a23fefb0ed28	Blood & Glory 2: Legend	\N	Adventure	60.00	{iOS}	Welcome to Blood & Glory Legend – the highly anticipated sequel to the AAA blockbuster smash-hit Blood & Glory! Return to the arena and bask in the blood-hungry cheers of the crowd as you fight to become a LEGEND!	0	Glu Mobile
+37f8ab83-8d76-4d54-b707-2c7cc5ee57b7	Super Mario Maker	\N	Platform	60.00	{"Wii U"}	Super Mario Maker lets people’s imaginations run wild. For the first time ever, friends can have fun playing through levels they create for one another. The Wii U GamePad controller makes it so easy for anyone to create levels; it may feel like simply sketching out ideas on paper. Players can enjoy a seemingly endless supply of inventive Mario levels from players around the world. \n \nThe game includes a book totaling about 100 pages that illustrates the boundless possibilities in Super Mario Maker. Nintendo will also release two special Mario amiibo figures to celebrate the 30th anniversary of the original Super Mario Bros. game. Tapping these amiibo in Super Mario Maker adds a Big Mushroom power-up to your course, allowing Mario to grow big and bust blocks from any direction, as well as adding a retro visual filter to the game, reminiscent of older cathode ray tube televisions. In addition, many other amiibo will also be compatible with Super Mario Maker through the use of a new item called the Mystery Mushroom. This item allows Mario to take the appearance of many other characters, such as Link, Kirby or Wii Fit Trainer, complete with character-specific animations and sound effects. These character costumes can be unlocked by completing the 100 Mario Challenge mode and many can also be unlocked if the player taps the amiibo of the character to the Wii U GamePad.	0	Nintendo EAD Group No. 4
+7870ed38-a332-493d-8375-73e9452c7323	Lost Souls: Enchanted Paintings	\N	Adventure	60.00	{"PC (Microsoft Windows)"}	After the police and FBI come up empty in their investigation, Bella turns to forces beyond our world to find her missing son in Lost Souls: Enchanted Paintings! A mysterious package with no return address appears on Bella’s doorstep and now her entire world is about to be turned upside down! Use your Hidden Object Puzzle Adventure talents to explore this incredible game and save Bella’s son!	0	Big Fish Games
+ee5487a2-f9e5-429c-b22a-9c276003d2f6	Final Fantasy Legend II	\N	Role-playing (RPG)	60.00	{"Nintendo DS","Game Boy","Nintendo Switch"}	The Final Fantasy Legend series continues! In this classic RPG adventure, you are on a quest to reunite with your father. In order to find your father, you must travel far and wide to find the scattered fragments of a mystical force, known as Magi. Your quest takes you to several mysterious lands filled with caves, temples, enemy bases, ancient Japanese castles, and much more. Many of the worlds are filled with quirky inhabitants, such as the world of giants. Another world praises beauty but banishes ugliness.\n\nYou can choose four heroes to accompany you in your journey. Choose from humans, robots, and even monsters. As the game progresses, you will encounter additional characters that may join your party.	0	Sunsoft
+7494ffa5-5a7c-43b0-af68-7ca3694af21e	Cube Escape: The Cave	\N	Puzzle	60.00	{Mac,Android,iOS}	An old man is about to enter a mysterious Cave. A familiar guest needs your help before you descend deeper and deeper into Rusty Lake. Cube Escape: The Cave is the ninth episode of the Cube Escape series and is a continuation of the Rusty Lake story.	0	Rusty Lake
+5ef68494-a8c0-4687-aa57-a83c2611dec1	BOXBOXBOY!	\N	Platform	60.00	{"Nintendo 3DS"}	It's time to think outside the box once again. Our boxy hero, Qbby, has a brand-new power that lets him duplicate his blocky bod into TWO sets of boxes. He'll put every box to use to survive perilous traps across 11+ worlds of puzzling levels. Learn new tricks and box formations to get past obstacles, like switches, spikes, and even lazers! \n \nOnce you learn the ropes—erm, boxes—take on the bonus challenge world to beat levels using the Bunny or Ninja outfit with a lower box count. Medals overflowing your pockets? Take them to the shop to purchase new costumes, like the Robo-Suit, read humourous comics, or listen to the tunes of BOXBOXBOY! If you've played the first title, BOXBOY!, you can unlock many of those costumes too because almost every one can be used in BOXBOXBOY!	0	HAL Laboratory
+368f7ef6-1ebd-46ed-a74a-f7a14b8c2b10	Forza Horizon 2	\N	Racing	60.00	{"Xbox 360","Xbox One"}	Race through a massive wide-open world featuring dramatic weather and day-to-night cycle in Forza Horizon 2. Instantly connect with friends in the ultimate celebration of speed, style, and action-packed driving. Explore beautiful and exotic locations in more than 200 of the world’s greatest cars, all created with precise detail in stunning 1080p.	0	Microsoft Studios
+6b715902-e134-44cc-bdce-507bcaba4568	SoulCalibur II HD Online	\N	Fighting	60.00	{"PlayStation 3","Xbox 360"}	Soulcalibur II HD Online reimagines the beloved title by adding online multiplayer support to the title as well as vibrant updated graphics to take advantage of modern high definition TVs. For the first time ever, players will be able to square off against opponents from around the world with their favorite Soulcalibur II characters such as Ivy, Taki, Mitsurugi, Talim, Maxi and more.	0	Project Soul
+cdae5265-6f8f-433c-8a0f-712cbcd3b6ca	Teeny Titans: Teen Titans Go!	\N	Strategy	16.00	{}	In Teeny Titans, Go! you will join Robin for a figure battling RPG of epic proportions.\nAssemble your squad and face off in 3-on-3 battles! Bust out super moves in real time with the battle bar. Switch between your heroes to launch awesome attacks and take down your opponents.	0	Cartoon Network
+6aa8edce-a5df-4ac0-8f72-da963e9b007f	Hatsune Miku: Project Mirai DX	\N	Music	60.00	{"Nintendo 3DS"}	Hatsune Miku: Project Mirai DX is a rhythm game and the sequel to Hatsune Miku and Future Stars: Project Mirai. The game is also a spin-off of the Hatsune Miku: Project DIVA series of Vocaloid rhythm games. Like the original, the game primarily makes use of Vocaloids, a series of singing synthesizer software and the songs created using these vocaloids, most notably the virtual-diva Vocaloid Hatsune Miku. While Project Mirai only had button controls, Project Mirai 2 adds the use of touch screen controls where players tap the bottom screen. An increased sense of speed and additional gimmicks have also been added.\n\nThe "PuyoPuyo 39" mini-game can be played by two people through a local wireless connection.	0	Sega
+0ccb5b62-8a96-4a27-ae05-24b4d1cd8856	Observation	\N	Puzzle	60.00	{"PC (Microsoft Windows)","PlayStation 4","Xbox One"}	Observation is a sci-fi thriller uncovering what happened to Dr. Emma Fisher, and the crew of her mission, through the lens of the station’s artificial intelligence S.A.M.	0	Devolver Digital
+7c54c3c1-7aa0-41be-8e5b-454dbd41f07b	Rallisport Challenge	\N	Racing	60.00	{"PC (Microsoft Windows)",Xbox}	You want real rally racing? Try strapping yourself in for the four play modes of Rallisport Challenge. Twenty-five licensed vehicles participate in Conventional Rally, RallyCross, Hill Climb and Ice Racing. Tracks are taken from the real world, with matching terrains and environments. Particle and weather effects heighten the realism. Rallisport Challenge's unique AI engine delivers drivers with their own individual personalities and driving habits, and effective graphics and animations bring it all to life.	0	Microsoft Game Studios
+37d61b22-dc0d-4708-9637-1d7d1c085a4d	Wii Sports Club: Golf	\N		60.00	{"Wii U"}	Wii Sports Club – Golf features unique controls using the Wii U GamePad and Wii Remote Plus controllers.	0	Nintendo
+192bf70b-422a-40aa-93f4-020be5970258	Super Robot Wars OG Saga: Masou Kishin - The Lord of Elemental	\N		60.00	{}		0	Namco Bandai Games
+11f9c436-7707-4fa4-9502-6f8394072f35	Metro Redux	\N	Shooter	60.00	{Linux,"PC (Microsoft Windows)","PlayStation 4","Xbox One","Nintendo Switch","Xbox Series X|S"}	Metro Redux is the ultimate double game collection, including the definitive versions of both Metro 2033 and Metro: Last Light, each rebuilt in the latest and greatest iteration of the 4A Engine for next-gen consoles and PC.\n\nFor the first time, console owners can expect smooth 60FPS gameplay and state of the art visuals that were once only available on high-end PC hardware.\n\nNewcomers to the series will get the chance to experience two of the finest story-driven shooters of all time in one vast package; an epic adventure combining gripping survival horror, exploration and tactical combat and stealth.\n\nFans of the original games will find the unique world of Metro transformed with incredible new lighting, physics and dynamic weather effects, as well as a host of gameplay improvements and new features.	0	Deep Silver
+acd14160-c516-4827-a54d-11336f445dd4	Respawnables: Special Forces	\N	Shooter	60.00	{Android,iOS}	The Respawnables is a third-person shooter where player's goal is to achieve all of the missions in Missions Mode and collect all items available, such as weapons, heads, bodies, and legs. All of this can be found and bought in the shop.\nOnce the player reaches level 50, which is the max level, he/she will unlock all items available in the game for cash or gold, which they can use in Multiplayer, where the player can choose two modes to fight other players in any level. They can team up with other players and fight other teams in Team Vs., or fight every player in a match in Free For All.\n\nThere is also a Hordes mode for which players can fight zombies to acquire Zombinites.\n\nThere are also achievements that will give points to the player's Game Center account when won.	0	Digital Legends Entertainment
+df0f29a6-00a6-424e-bb00-cd0946a34300	LISA the Joyful	\N	Role-playing (RPG)	60.00	{Linux,"PC (Microsoft Windows)",Mac}	Traverse the world as Buddy. Stake your claim and make your mark. Prepare for the worst, because this is the closing chapter of LISA.	0	Dingaling
+301a241d-56d2-40b6-8b29-fa136e23feac	Estranged: Act I	\N	Shooter	60.00	{"PC (Microsoft Windows)"}	Estranged, a Half-Life 2 mod, is a the story of a lone fisherman, stranded on a mysterious island during a violent storm. Explore rich environments and meet the curious inhabitants of the island as you find a way back to the mainland…	0	Alan Edwardes
+9535e7b6-d6b8-4eb1-a636-b6241c6a5cba	Tales from the Dragon Mountain 2: The Lair	\N	Puzzle	60.00	{"PC (Microsoft Windows)",Mac,"Nintendo Switch"}	It has been years since brave Mina Lockheart defeated Lord Strix. But dark shadows are rising once again! Spirits are restless! For he has awaken! Evil Lord Strix is breeding a new army to enslave all creatures from the Dragon Mountains!\n\nIt is once again up to Mina and her best friend spirit Malik to travel to distant parts of the world and find clues how to open the passage to a hidden wasteland - Lord Strix's lair. Meet different characters along your journey, help them and have them help you. Search and discover new places, but hurry! Lord Strix gets stronger by the minute!	0	Libredia
+9bb8fa83-4014-485e-98d5-ccb2a4ba6f4e	Love Live! School Idol Festival	\N	Music	60.00	{Android,iOS}	Love Live! School idol festival is a free-to-play rhythm game released for iOS and Android, based on the Love Live! franchise. The game features two modes (Story and Live) and all nine members of the idol group μ's. The school idol group Aqours was later added to the game as a major update on July 5, 2016 with its accompanying songs, stories, cards and events. The players are free to switch between μ's and Aqours mode in the game.	0	KLab
+8d69d05d-d197-475a-ac7c-0c84422bd4b8	Just Dance 2015	\N	Music	60.00	{Wii,"PlayStation 3","Xbox 360","Wii U","PlayStation 4","Xbox One"}	Just Dance® 2015 is the latest, most awesome-filled version of the world’s #1 dance game! With more than 50 million copies of Just Dance titles in homes around the world, our players are as important as ever, and the new features in Just Dance 2015 bring people together in more ways than ever before. For the first time ever, you too can be in the game. The all-new Community Remix feature puts players in the global spotlight by allowing them to become a Just Dance coach that players everywhere can dance along to. Just Dance 2015 also introduces Challenger mode where players will be able to compete against their past performances or challenge friends anywhere to beat their score, even if they can’t play at the same time. Plus, this year we’re bringing even more excitement to World Dance Floor, the online multiplayer mode.	0	Ubisoft Paris
+0ba21863-1ae1-449f-ad2a-1ad25ebb212b	ACA NEOGEO TOP HUNTER: RODDY & CATHY	\N	Fighting	60.00	{"PlayStation 4","Xbox One","Nintendo Switch"}	TOP HUNTER RODDY & CATHY is a side-scrolling action game released by SNK in 1994. Using a 2-line system with front and back lines that can freely be switched between, jump, shoot, throw, and perform special attacks to defeat the space pirates who aim for total domination. This game offers simultaneous 2 player mode.	0	SNK
+c0921cc9-5d82-4b88-88ab-6f896a28d12d	Kingdom Hearts HD 2.5 ReMIX	\N	Fighting	60.00	{"PlayStation 3","PlayStation 4","Xbox One"}	KINGDOM HEARTS HD 2.5 ReMIX is an HD remastered compilation of KINGDOM HEARTS II FINAL MIX and KINGDOM HEARTS Birth by Sleep FINAL MIX. Previously exclusive to Japan, both games will be available for the first time to North America for the PlayStation®3 system. HD remastered cinematics from KINGDOM HEARTS Re:coded will also be included in the compilation. The game is a sequel to last year's KINGDOM HEARTS HD 1.5 ReMIX and will lead into the highly anticipated KINGDOM HEARTS III.	0	Square Enix
+4a696045-9f71-42eb-be00-cf9011190170	3D Out Run	\N	Racing	60.00	{"Nintendo 3DS"}	3D Out Run is the critically acclaimed 1986 driving game designed by Yu Suzuki, re-mastered and enhanced for the Nintendo 3DS system.	0	M2
+5160df58-d448-464b-a59a-8feb740a7376	Druidstone: The Secret of the Menhir Forest	\N	Puzzle	60.00	{"PC (Microsoft Windows)"}	"Druidstone: The Secret of the Menhir Forest is a fantasy roleplaying game, in which you play the role of a druid who has just been reincarnated. Who are you? How did you die? Your mind is foggy. You only know you are here for a reason. The forest called you here because it needs you.\n\nThe world of Druidstone is a vast procedurally generated forest where you explore ancient ruins, battle monsters with spells and swords, and meet interesting friends and foes. Battles will be fought on a two-dimensional grid using a tactical, turn-based battle system. Using your limited resources wisely is important for surviving in this dangerous world. You start the game barehanded, only clad in a simple cloak but as you discover the secrets of the Menhir Forest you will get more powerful and learn new abilities and battle tactics. At the heart of Druidstone is a gripping story which is told through the encounters and characters you will meet. Perhaps you will team up with an ally or two along the way?"	0	Ctrl Alt Ninja
+ebccb7fe-6354-4e57-bcc2-f319d4494434	Koikatsu Party	\N	Simulator	60.00	{"PC (Microsoft Windows)"}	Creating your own adorable anime character is a cinch! Use a robust suite of intuitive and precise tools to customize a character from the ground up, give her one of 30 different personality archetypes, and then get busy with a host of romantic options. Bring your dream waifu to laifu!	0	Illusion
+8ccaae6f-969b-4c0a-8bf4-baf9a2d16d95	Zak McKracken and the Alien Mindbenders	\N	Point-and-click	60.00	{"PC DOS","Commodore C64/128",Amiga,"Atari ST/STE","FM Towns"}	Zak McKracken is a tabloid reporter (and not a very good one at that). After having a psychedelic dream one day, Zak realizes that something is wrong -- space aliens are dumbifying the general public through the telephone system. Zak must stop this, but he can't do it alone. After finding a strange crystal, Zak manages to get the help of the anthropologist Annie and her friends, Melissa and Leslie. The four unlikely heroes must now figure out a way to destroy the dumbifying devices and save the Earth.\n\nZak McKracken and the Alien Mindbenders is a third-person puzzle-solving adventure similar in gameplay to Lucasfilm's breakthrough title Maniac Mansion. The player chooses verb commands (Open, Pick Up, Give, etc.; there are no Look or Talk commands) to interact with the game world. The game features up to four controllable protagonists; it is possible to switch between them at any time after they have been introduced, and also exchange inventory items if the characters are in the same location. The game can be described as a "globe-trotting" adventure, since the heroes are required to travel to different exotic countries and even leave the Earth for a while in order to complete it. Some of the puzzles are optional or can be solved in different ways.\n\nThe FM Towns version has VGA graphics with 256 colors and higher-quality music and sound effects.	0	Lucasfilm Games
+0fc48c95-d6ba-4b47-a26f-0ea3219a0ed0	Dishonored: Game of the Year Edition	\N	Adventure	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360"}	Experience the definitive Dishonored collection with the Game of the Year Edition. This complete compilation includes Dishonored, winner of over 100 Game of Year awards, as well as all of its additional content - Dunwall City Trials, The Knife of Dunwall, The Brigmore Witches and Void Walker's Arsenal.Developed by Arkane Studios, Edge Online's 2012 Studio of the Year, Dishonored is an immersive first-person action game that casts you as a supernatural assassin driven by revenge. With Dishonored's flexible combat system, creatively eliminate your targets as you combine the supernatural abilities, weapons and unusual gadgets at your disposal. Pursue your enemies under the cover of darkness or ruthlessly attack them head on with weapons drawn. The outcome of each mission plays out based on the choices you make.	0	Arkane Studios SA
+b2aa56f2-91fd-4980-81a2-bdc42ae3b28b	Pokémon Uranium	\N	Role-playing (RPG)	60.00	{"PC (Microsoft Windows)"}	Pokemon Uranium takes place in the tropical Tandor region, home to over a hundred new and unique species of Pokemon. The Tandor region is known for its gym challenge: to qualify, trainers must collect 8 gym badges from around the region in order to compete in the prestigous Tandor Regional Tournament. Trainers that win the Tournament get a huge prize as well as world wide renown.\n\nYou, a 13-year-old kid from Moki Town, did not set out to become a Pokemon Master. After your mother Lucille died ten years ago in an accident at a nuclear power plant, your father Kellyn, the top Pokemon Ranger in the Tandor Ranger Union, left you with your elderly aunt and departed to travel the region. But now that you are grown up, your aunt can no longer support you. Out of a home, you did what most kids your age do and took up Pokémon training as a means to make a living.\n\nProfessor Bamb'o, regional expert on Pokémon elements, has been looking for a trainer assistant to travel the region and gather specimens of the varied wildlife. You step up to the challenge, along with your rival, a younger boy named Theo. After taking a test and receiving your starter Pokémon, you head towards your first gym challenge in Nowtoch city, and take your first steps exploring the Tandor region.\n\nThings aren't as sunny as they first seem, though. Just when the accident ten years ago had been all but forgotten, new mysteries emerge. A new power plant is built over the site of the old one. Your father begins acting strangely, journeying to the far reaches of the region and questioning whether your mother is really deceased. Sinister Pokemon, corrupted by nuclear radiation, threaten innocent people. In the midst ofthe turmoil, it seems that an impending disaster is looming over Tandor... You may be in for more than you expected.	0	Uranium Team
+fe359d3d-fe3b-4783-a712-74ea3d902455	L.A. Noire: The Complete Edition	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360"}	L.A. Noire is set in Los Angeles in 1947 and challenges the player, controlling a Los Angeles Police Department (LAPD) officer, to solve a range of cases across five divisions. Players must investigate crime scenes for clues, follow up leads, and interrogate suspects, and the player's success at these activities will impact how much of each case's story is revealed.\n\nThe game draws heavily from both the plot and aesthetic elements of film noir, stylistic films made popular in the 1940s and 1950s that share similar visual styles and themes, including crime and moral ambiguity. The game uses a distinctive colour palette, but in homage to film noir it includes the option to play the game in black and white. Various plot elements reference the major themes of detective and mobster stories such as Key Largo, Chinatown, The Untouchables, The Black Dahlia, and L.A. Confidential.\n\nL.A. Noire is notable for using Depth Analysis's newly developed technology MotionScan, whereby the actors portraying the game's characters were recorded by 32 surrounding cameras to capture facial expressions from every angle. The technology is central to the game's interrogation mechanic, as players must use the suspects' reactions to questioning to judge whether or not they are lying. L.A. Noire was the first video game to be shown at the Tribeca Film Festival. Upon release, the game received wide acclaim for its advances in storytelling and facial animation technology. As of February 2012, both PC and console versions had shipped nearly 5 million copies combined.\n\nIn addition to the original full game, L.A. Noire: The Complete Edition for PC will include a multi-use code to access all the previously released downloadable content from the console versions, including the “Nicholson Electroplating” Arson case, the “Reefer Madness” Vice case, “The Consul’s Car” Traffic case, “The Naked City” Vice case and “A Slip of the Tongue” Traffic case.	0	Rockstar Games
+3b9d7588-200b-47b3-958c-eca15971af44	Triple Town	\N	Puzzle	60.00	{"PC (Microsoft Windows)",Android,iOS}	Triple Town is an original puzzle game in which you try to grow the greatest possible city. The larger the city you build, the more points you score. You build your city by matching three or more game-pieces: combine three grasses to make a bush, three bushes to make a tree... until you've filled the board with houses, cathedrals and castles. Along the way, you'll have to outwit giant bears who will try to block your progress.	0	Spry Fox LLC
+794f7efa-bd4d-4faf-8d8d-13a0d6ca1757	Edna & Harvey: The Breakout	\N	Point-and-click	60.00	{"PC (Microsoft Windows)",Mac,iOS}	Edna & Harvey: The Breakout is an adventure game for Windows and Mac about a girl and her toy rabbit. Players of the game have to escape from a mental hostpital.\n\nThe Gameplay is similar to LucasArts' early 90's games using the SCUMM engine. The player finds himself in a 2D world. At the bottom of the screen is a list of verbs to be used and combined for solving puzzles.\n\nThe game began as a university project in Germany (Wikipedia). Although that version received an outstanding reception, the English game merely received a mixed reception with both average and low review scores, mostly due to the sloppy translation.	0	Daedalic Entertainment
+0068bd83-f6eb-448b-8150-fab7d6eab8b7	Portal Reloaded	\N	Puzzle	60.00	{"PC (Microsoft Windows)"}	Portal Reloaded is a free, community made modification for Portal 2. The mod builds on the concepts of the main game by allowing you to place a third portal, which enables traveling between two different timelines. Thinking in four dimensions is vital to solving 25 brand new mind-bending puzzles.	0	PORTANIS
+9158f0f6-0a54-4b27-a0fd-c1c5d66bdef9	SOCOM II: U.S. Navy SEALs	\N	Shooter	60.00	{"PlayStation 2"}	SOCOM II is a third-person tactical shooter. There are 12 different single-player missions: split equally between Albania, Algeria, Brazil and Russia. There are five different ranks that can be played in the game: Ensign, Lieutenant, Commander, Captain and Admiral. The player starts with the first three ranks unlocked, but must finish the single player game on Commander to unlock Captain, and on Captain to unlock Admiral. Players can unlock new models for multiplayer, as well as movies, music, concept art, and credits by completing certain objectives.	0	Zipper Interactive
+197e60b1-d7c0-4398-8238-cdc2b0f58b53	Fire Emblem Fates: Conquest	\N	Role-playing (RPG)	60.00	{"Nintendo 3DS"}	Fire Emblem Fates is split into three story paths. Conquest is one of the two base stories, the other being Birthright. The other story path can be bought digitally at a discount through the in-game store. The third story path is Revelation, a DLC that was released later. You need to be have completed Chapter 6 in either game to access the other stories and DLC.\n\nConquest is the hardest of the three paths, having reduced ability to grind experience from maps, tougher mission objectives, and giving less money and experience for those missions.	0	Nintendo SPD
+de9069b3-11f3-41b2-8ea5-6bec4cdb0541	Fun Run 3: Arena Running Game	\N	Racing	60.00	{iOS}	Join our community of more than 100 million Fun Run players from all around the world in one of the best realtime online multiplayer games! Get ready for running games with even more action-packed craziness than before – enter to win big against your furry opponents!\n\nFun Run is Back!\nWe are back with the third chapter in the Fun Run saga – FUN RUN 3: ARENA – with more of the mischief and mayhem that you loved in Fun Run and Fun Run 2.\n\nRidiculously Funny Running Game\nFun Run 3: Arena takes the legendary gameplay of classic running race games and adds a new dimension of cool! Race against other real players while escaping obstacles. Sabotage your rival runners’ progress to WIN the race in this fun game to play online. No holding back! Slash, crush, and destroy your opponents to the finish line!\n\nArena Gameplay\nArena is the where eight furries fight against elimination! Only the fastest 3 reach the finish line for amazing rewards and ultimate glory. Be the victorious in this addicting game mode and fulfill your destiny as the one and only ARENA CHAMPION.\n\nForm a Clan & Run with Friends\nRun with your clan buddies! Participate in multiplayer games online with friends or total strangers. Find friends online to show them how it’s done! Fun Run 3 is all about playing awesome games with friends – and beating them to the finish line!\n\nShow off your style and be the coolest critter in the forest!\nWe packed this Fun Run game with hilarious fashionable accessories! Choose from different furry friends and dress them up with cool hats, boots, sunglasses and even more swag to show off your funny games style!\n\nCool & Fun Features\n- Clan Battles in a 2v2 mode! \n- 30+ new power-ups!\n- Arena - the new 8 player racing game mode!\n- Race against friends or random players in real-time!\n- Slam & Slide: two new actions to leave the opposition in the dust!\n- Customize your avatar with more options than ever!\n- Conquer lots of new levels!\n- Climb the leaderboards and challenge the best players in the world!\n\nFun Run 3: Arena is a free online multiplayer game – an internet connection is required.\nThe Arena awaits! Download Fun Run 3: Arena now and start running! Ready, Set, GO!	0	DirtyBit
+81dba1b9-7bce-4df5-8c2f-f45ba77ea1bf	Monster Boy and the Cursed Kingdom	\N	Platform	60.00	{"PC (Microsoft Windows)","PlayStation 4","Xbox One","Nintendo Switch","PlayStation 5","Google Stadia"}	A legendary game series returns with an all-new adventure! Monster Boy is a colourful side-scrolling action adventure created in cooperation with Ryuichi Nishizawa, the creator of the Wonder Boy Monster World series (Trademark of SEGA Corporation Japan).\n\nMonster Boy is being created to bring back the enjoyment of classic games that shine by simplicity. Pure, exciting gameplay; upbeat music and smooth graphics. You'll need to overcome huge bosses, find hidden passages, discover powerful equipment and use all your wits and skills to remove a powerful curse. Monster Boy can transform into 5 different creatures, each with their own skills and abilities. Take advantage of all the unique powers to open new paths and advance in an epic story. Monster Boy is a love letter to gaming from the 80's and 90's - will you join us and celebrate together with us?	0	FDG Entertainment
+2d7ce073-6ba8-4318-8139-24ca67be2695	Pokémon Ruby	\N	Role-playing (RPG)	60.00	{"Game Boy Advance"}	Sequel to Pokémon Gold and Silver Versions (1999), Pokémon Ruby and Sapphire Versions offer 135 new Pokémon, more complex battling and training systems, new crime organizations, a longer and more story-focused campaign and upgraded graphics to create a new and technically improved Pokémon experience.	0	Nintendo
+4f0a202d-eb54-48fb-aecd-cd1cedba2b0a	World of Warcraft: Wrath of the Lich King	\N	Role-playing (RPG)	60.00	{"PC (Microsoft Windows)",Mac}	World of Warcraft: Wrath of the Lich King, often referred to as WotLK, or Wrath, is the second expansion set for the massively multiplayer online role-playing game (MMORPG) World of Warcraft, following The Burning Crusade. It adds a substantial amount of content to the game world, including the continent of Northrend, home of the eponymous Lich King, and a new character "hero" class.	0	Blizzard Entertainment
+899e4dbb-d80e-4cca-a052-398ae8aa3288	Fire Emblem Fates: Birthright	\N	Role-playing (RPG)	60.00	{"Nintendo 3DS"}	Fire Emblem Fates is split into three story paths. Birthright is one of the two base stories, the other being Conquest. The other story path can be bought digitally at a discount through the in-game store. The third story path is Revelation, a DLC that was released later. You need to be have completed Chapter 6 in either game to access the other stories and DLC.\n\nBirthright is the easier path as it has the ability to use scouting missions to grind experience and money and simpler mission objectives.	0	Nintendo SPD
+af92509a-022d-4456-bb41-c05f3834b69d	Odallus: The Dark Call	\N	Platform	60.00	{"PC (Microsoft Windows)","PlayStation 4","Xbox One","Nintendo Switch"}	Odallus is a NES inspired exploration game with lots of action. It brings elements of classics such as Ghosts’n Goblins, Demon’s Crest and Castlevania while subverting some modern twists.	0	JoyMasher
+b0508683-d457-4ec1-83fe-b2cb662e8326	Havocado	\N	Indie	60.00	{"PC (Microsoft Windows)"}	Havocado is a silly hyper-speed multiplayer physics fighting game; shoot, punch, drive, and use magic to knock the other players off in a multitude of locations and scenarios.	0	Webble Games
+755d2aa3-fe4d-4b87-9edb-5c4eb1152653	Seven: Enhanced Edition	\N	Role-playing (RPG)	60.00	{"PC (Microsoft Windows)","PlayStation 4"}	Seven: The Days Long Gone is an open-world, isometric action role-playing game, in which you play as Teriel, a master thief sent on a mission that will shake the foundations of the Vetrall Empire. Free roam across the vibrant prison island of Peh, and choose whether to help or exploit its many citizens.	0	IMGN.PRO
+4208ad6b-59c8-4ed5-8344-0e455d5befb9	Nex Machina	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 4"}	From the collaboration between Housemarque (Resogun, Alienation, Matterfall), and Robotron and Smash TV legendary creator Eugene Jarvis comes Nex Machina, an explosive arcade experience created with competition in mind.	0	Housemarque
+433b65d4-fa54-4da6-975e-206c3e6bc775	3D Super Hang-On	\N	Racing	60.00	{"Nintendo 3DS"}	Gear up for ultimate speed in Super Hang-On.	0	Sega
+7ec15875-6788-4bf7-a21c-3470f4e1594e	Soul Edge	\N	Fighting	60.00	{PlayStation,Arcade}	Soul Edge is an arcade fighting game developed by the team Project Soul and published by Namco. It is the first installment in the Soul series of weapon-based fighting games. An upgraded and expanded version of the game was ported to the PlayStation later that same year. Namco chose to use the title Soul Blade in Europe, North America and Australia. The game was a commercial and critical success and was followed by a several sequels, beginning with Soulcalibur in 1998.	0	Namco
+d96a1b7a-8a47-4d68-9ec5-5ef317667b23	Super Mario RPG: Legend of the Seven Stars	\N	Platform	60.00	{Wii,"Super Nintendo Entertainment System (SNES)","Wii U","Super Famicom"}	A JRPG entry in the Super Mario franchise in which Mario meets many unlikely allies in order to jump and fight his way through the Mushroom Kingdom and collect stars to repair the Star Road, the pathway that grants people's wishes, which was destroyed by Smithy, the otherworldly entity that hijacked Bowser's castle and threw the Kingdom into disarray.	0	Square Enix
+4b4997ed-2544-475b-b629-3eaaf7d308c4	Space Invaders Extreme 2	\N	Shooter	60.00	{"Nintendo DS"}	High-speed action-packed game play returns with the addition of exciting head-to-head battle modes, a challenging new time attack mode, and expanded game play progression that goes beyond Fever Time to SUPER FEVER TIME! Space Invaders Extreme 2 - faster and more exhilarating than ever before!	0	Taito Corporation
+5327ebb9-12a3-4aee-b851-dee59095174e	Universal Paperclips	\N	Simulator	60.00	{Android,iOS,"Web browser"}	Universal Paperclips is a browser game were the player takes on the role of an AI tasked with creating paperclips.	0	Frank Lantz
+49f13a3c-dcf5-4e87-bf87-0be21266b5c1	Worms Pinball	\N	Simulator	60.00	{"PC (Microsoft Windows)",PlayStation}	The Worms crew returns, and this time they’ve got balls! The classic Worms Pinball sends the cute little pink guys spinning across one of the most realistic pinball tables ever created. Battle with honour through the mystic art of Worms Kung-Fu or hang at high noon with the grizzliest, pinkest cowboys this side of Texas. Only Worms™ Pinball offers an action packed pinball simulation of pure wormage! Worms Pinball leaves nothing to the imagination. The table sports 3D LED displayed sub-games and parallel objectives, transparent ramps, user-controllable moving gadgets, moving mechanical parts and wild sound effects and music. The table contains over 150 animated parts and thousands of frames of rendered FMV animation for the LED display. It’s got tilt functions, hit combinations as well as drop and dead catches, bounce and flip passes, bang backs, death saves, magnetic fields and countless other exciting features. The depth of gameplay, variety of action and sophisticated table rules ensures that Worms Pinball will have all gamers, not just hard-core pinheads, hooked.	0	Infogrames
+7c0d00bc-e641-4d0e-b949-908357cc1814	The Legend of Kusakari	\N	Puzzle	60.00	{"Nintendo 3DS"}	Help the heroes and cut that grass!	0	Nnooo Pty Ltd.
+f76320e7-4356-4cbb-9c28-318b8965743f	Samurai vs Zombies Defense	\N	Strategy	60.00	{iOS}	Play as the heroic Samurai and defend your village against hordes of attacking zombies! Recruit allies and build defenses to stop them!	0	Glu Mobile
+07992d71-c106-4789-a516-e3364d79e604	Planescape: Torment - Enhanced Edition	\N	Role-playing (RPG)	60.00	{Linux,"PC (Microsoft Windows)",Mac,Android,iOS,"PlayStation 4","Xbox One","Nintendo Switch"}	"Discover an incredibly rich story and a unique setting unlike anything else in fantasy. Defeat strange and alien creatures, engage in rich dialogue, and explore the dark and dangerous Planescape setting in this 50+ hour RPG classic.\n\nMillions of Planescape: Torment fans have enjoyed the strange and dangerous city of Sigil and surrounding planes through the Nameless One's eyes. Now it’s your turn. This is Planescape: Torment like you’ve never seen before.\n\nEnhanced Edition - Key Features:\n- Enhanced Planescape: Chris Avellone, Lead Designer on Planescape Torment, has partnered with Beamdog to curate gameplay updates, bug fixes, and enhancements to best capture his original vision for the game.\n\n- Remastered Music: The full Planescape: Torment soundtrack has been remastered in-game to add more depth to Sigil and the multiverse.\n\n- 4K Interface: Sigil has never looked this good! The interface of Planescape: Torment has been rebuilt in high definition with tons of new convenience features.\n\n- A Planescape For Today: The Enhanced Edition includes modern features such as tab highlighting, area zooming, combat log, quickloot, and more!"	0	Beamdog
+0f33e516-608d-4b80-80df-cf536ad168a4	Resident Evil Revelations 2: Episode 1 - Penal Colony	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360","PlayStation 4","Xbox One"}	Resident Evil Revelations 2 follows two interwoven stories of terror across 4 episodes of intense survival horror.\n\nEpisode One: Penal Colony\nKidnapped by a unknown group of assailants, Claire and Moira awake to find themselves trapped on an isolated island infested with horrifying creatures beyond imagination. Now they must desperately struggle to escape the horror.\n\n*Episode One includes Raid Mode for countless additional hours of gameplay.	0	Capcom Entertainment, Inc.
+c18c4dff-f517-4261-aa21-4b3a918a5210	Mobil 1 Rally Championship	\N	Racing	60.00	{"PC (Microsoft Windows)",PlayStation}	Mobil 1 Rally Championship (officially called Mobil 1 British Rally Championship, unofficially nicknamed Rally Championship 2000) is a rally video game which is part of the Rally Championship series. The game was released for Windows and PlayStation on 31 December 1999. It is developed by Magnetic Fields and published by Actualize. The PC version is notable for the stages being based around real-life Ordnance Survey maps. Magnetic Fields exists no more. \n \nAfter the Network-Q RAC Rally Championship (1996), it is a sequel to the International Rally Championship (1997). It features 22 cars and 36 tracks, drivable in two directions: Simulation and Arcade.	0	Actualize
+b2a5c087-c188-417f-8de7-222960306da6	Toontown Rewritten	\N	Role-playing (RPG)	60.00	{Linux,"PC (Microsoft Windows)",Mac}	Toontown Rewritten is a game where you and other toons are trying to protect and save the town from the Business Cogs, you can play solo or with friends.	0	Toontown Rewritten Team
+a9bc9ccc-c099-4c14-95d6-c9d70bae218d	Tick Tock: A Tale for Two	\N	Puzzle	60.00	{"PC (Microsoft Windows)",Mac,Android,iOS,"Nintendo Switch"}	You and your friend find yourselves trapped in two magical clockworlds where you have to solve puzzles to escape. Neither of you have the whole picture so the only way to get out is to communicate what you see to the other player. Play on two devices, local or remotely, all you need is a voice connection.	0	Other Tales Interactive
+60ec83b7-4be9-4302-9ce3-ac6b06eac3bf	Gran Turismo 5	\N	Racing	60.00	{"PlayStation 3"}	Gran Turismo 5 is the fifth game in the Gran Turismo racing video game series. It expands on the game's Prologue version and is the first entry of the series to be developed for PlayStation 3. The game marks the first entry in the series with online races with support for up to 16 players. Over 1,000 cars, 26 different locations, and 71 different tracks are available in the game. Night racing also returns. World Rally Championship, NASCAR and Super GT licenses are utilized for the first time in the Gran Turismo series.	0	Polyphony Digital
+6ade06f5-e399-4881-be30-dcd0cc00685f	Kingdom Hearts II Final Mix	\N	Shooter	60.00	{"PlayStation 2"}	In September 2006, Square Enix announced Kingdom Hearts II Final Mix, featuring new scenes and gameplay elements. Like the first re-release, this version would combine English audio with Japanese text and also use the "Sanctuary" theme song instead of "Passion". New cutscenes, however, used Japanese voice acting, as they mostly featured Organization XIII members from Kingdom Hearts: Chain of Memories who did not yet have English voice actors; these scenes were later re-dubbed into English for the HD 2.5 Remix release.	0	Buena Vista Games
+ef3af862-dd21-4b19-82fa-88fe7c05a7d3	Gnomoria	\N	Simulator	60.00	{Linux,"PC (Microsoft Windows)",Mac}	Gnomoria is a sandbox village management game where you help lead a small group of gnomes, who have set out on their own, to thrive into a bustling kingdom! Anything you see can be broken down and rebuilt elsewhere. Craft items, build structures, set traps and dig deep underground in search of precious resources to help your gnomes survive the harsh lands. Build your kingdom and stockpile wealth to attract wandering gnomads to your cause, but be wary of also attracting enemies!	0	Robotronic Games
+59d0ecdf-9615-41d6-aa59-12888b2bac12	Rise of the Triad	\N	Shooter	60.00	{"PC (Microsoft Windows)"}	Rise of the Triad is a reboot of the 90's first-person shooter Rise of the Triad: Dark War. It stays very close to the concept of the original game, but with modern graphics, completely different levels and entirely designed in the spirit of the first title. Defining features include very fast gameplay with a focus on explosions and twitch action rather than a tactical approach, huge traps such as spinning blades and spikes, launch pads to bounce and fly through the air, an extreme amount of blood and gore, and many ludicrous and very powerful weapons.	0	Apogee Software
+c3b54ed6-3c4c-4364-8cd3-76dfc7b178d7	Borderlands 3: Moxxi's Heist of the Handsome Jackpot	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 4","Xbox One"}	Ready for the biggest score of your career? Moxxi has just the job for you, sugar: a good old-fashioned heist. Battle your way through Hyperion forces, crazed casino-goers, and claim your loot!	0	2K Games
+9f3b7574-dc01-4190-ba0f-0502d935e567	Injustice 2	\N	Fighting	60.00	{"PC (Microsoft Windows)","PlayStation 4","Xbox One"}	Power up and build the ultimate version of your favorite DC legends in INJUSTICE 2. With a massive selection of DC Super Heroes and Super-Villains, INJUSTICE 2 allows you to equip every iconic character with unique and powerful gear earned throughout the game. Experience an unprecedented level of control over how your favorite characters look, how they fight, and how they develop across a huge variety of game modes. This is your super Hero. Your Journey. Your Injustice.	0	NetherRealm Studios
+2eaa96bb-bb75-414f-87a9-bf111c37804e	The Beginner's Guide	\N	Adventure	60.00	{"PC (Microsoft Windows)",Mac}	A metafictional account of Davey Wreden, creator of the Stanley Parable (2013), who takes the player through the games of his old friend, Coda, while giving his commentary and interpretations of them, in order to understand why he makes the bizarre, often melancholic games that he makes, and decipher Coda's personality and inner struggles.	0	Everything Unlimited Ltd.
+47d328c7-19f9-4226-a289-43b6c2699090	Sid Meier's Civilization V: Gods & Kings	\N	Simulator	60.00	{Linux,"PC (Microsoft Windows)",Mac}	Sid Meier's Civilization V: Gods and Kings is the first expansion pack for Civilization V - the critically acclaimed 2010 PC Game of the Year. This robust expansion covers the entire scope of time from founding your first Pantheon of the Gods and spreading religion across the world, to deploying your spies in enemy cities in order to steal information and technology. \n \nAs you move through the ages, you’ll interact with new types of city-states, engage in new city-state quests and global competitions, and master exciting new systems for land and naval combat. Civilization V: Gods and Kings will also include nine new civilizations, nine new wonders, three original scenarios, and dozens of new units, buildings, and techs that will offer even more ways for players to expand their empire and dominate the world.	0	Firaxis Games
+a652d41a-1e3e-4775-996d-44865eb18503	The Settlers IV	\N	Real Time Strategy (RTS)	60.00	{"PC (Microsoft Windows)",Android,iOS}	The Romans, the Mayans, the Vikings, and the Trojans are the four industrious little races you'll be settling with. The seamless zoom function allows you to take a close-up peek as your settlers go about their daily business, or to zoom out for a bird's-eye view of how your very own empire is coming along. Put your settling skills to the test as you gather resources, establish and manage trade routes, manufacture goods, or wage war. It's up to you to lead your tiny settlers to victory! Are you up to the task?	0	Blue Byte Software
+74e750aa-37e5-46dd-bab3-c9684b36ad35	Henry Hatsworth in the Puzzling Adventure	\N	Platform	60.00	{"Nintendo DS"}	In Henry Hatsworth in the Puzzling Adventure players embark on single player fun like no other. Here Henry Hatsworth, a quirky, lighthearted character serves as your guide on a journey through a new style of gaming on your Nintendo DS that combines the action of an adventure game with the challenge of a puzzle game.\n\nIn this two-in-one extravaganza players explore five exotic worlds, fight a variety of opponents, and venture through more than 30 levels, including nearly a dozen hidden levels while taking on outrageous world-ending bosses.	0	EA Tiburon
+c687c942-e57f-4614-8901-77e631772c39	The Orange Box	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360",Mac}	The Orange Box is a bundle that includes five titles from Valve: Half-Life 2; Half-Life 2:Episode 1; Half-Life 2: Episode Two; Team Fortress 2, the sequel to the game that put class-based, multiplayer team warfare on the map; and Portal, the game that blends puzzles, first person action, and adventure gaming to produce an experience like no other.	0	Valve Corporation
+14235c55-edd8-4973-a607-79f535faa846	Castle of Magic	\N	Platform	60.00	{"Nintendo DSi"}	A side scrolling platformer from Gameloft, Castle of Magic is the quest to save the world from the evil Nefastax.	0	Gameloft
+11227249-164d-4fc8-a9dc-eb14dfceb5da	Age of Empires: Definitive Edition	\N	Real Time Strategy (RTS)	60.00	{"PC (Microsoft Windows)"}	Age of Empires, the pivotal RTS that launched a 20-year legacy returns in definitive form for Windows 10 PCs. Bringing together all of the officially released content with modernized gameplay, all-new visuals and a host of other new features, Age of Empires: Definitive Edition is the complete RTS package. Engage in over 40 hours of updated campaign content with new narration and pacing, jump online in up to 8-player battles with new competitive features and modes, experience 4K HD visuals with overhauled animations, get creative with the scenario builder and share your creations with easy mod support. There’s never been a better time to jump in to Age of Empires. Welcome back to history.	0	Forgotten Empires LLC
+683c5a53-4de0-4628-892e-700047ede8d1	Guild Wars 2: Path of Fire	\N	Role-playing (RPG)	60.00	{"PC (Microsoft Windows)"}	Guild Wars 2: Path of Fire is the second expansion for the award-winning game, Guild Wars 2. As the balance of magic comes undone, lead your allies in the hunt for the rogue god Balthazar, whose scorched-earth campaign threatens the very existence of Tyria.\n\nIntroducing mounts, mounts are far more than a speed boost—they're a whole new way to explore the world of Tyria. Unlock and train your new companions using the max-level Mastery character progression system, and explore freely by leaping across canyons, bounding up high cliffs, and skimming over quicksand.\n\nContinue to evolve and customize your level-80 character with a new elite specialization for each profession. With a new variety of playstyles, weapon choices, and traits to choose from, there are more options than ever to play your way.\n\nDiscover and earn treasures as you journey through the Crystal Desert. Outfit your character with new armor sets, skins, and weapons inspired by Elonian culture and the heritage of the desert.	0	ArenaNet
+5f452b8a-fe4a-4070-8f0e-e1aaf3d60717	The Talos Principle	\N	Puzzle	60.00	{Linux,"PC (Microsoft Windows)",Mac,Android,iOS,"PlayStation 4","Xbox One"}	The Talos Principle is a philosophical first-person puzzle game from Croteam, the creators of the legendary Serious Sam series, written by Tom Jubert (FTL, The Swapper) and Jonas Kyratzes (The Sea Will Claim Everything).	0	Devolver Digital
+b8a0be74-55c5-4fab-af39-cef390bd407b	Sujin Taisen Number Battles	\N		60.00	{"Nintendo DSi"}	Sujin Taisen Number Battles is a new kind of board game that combines puzzle and strategy. You take turns against human or computer opponents in an attempt to reach a target score by placing numbered tiles on the board.	0	Nintendo
+b71caf46-3c1e-4db5-9770-e973676a8e20	Goat Simulator: Waste of Space	\N	Simulator	60.00	{Android,iOS}	Goat simulation is finally leaving the planet where it was once conceived to explore the endless possibilities of space (Though we only had time to explore some of them)	0	Coffee Stain Studios
+8912e15b-4d2f-4ff1-8a53-bf09f96d02f9	Perfect Dark	\N	Shooter	60.00	{"Xbox 360"}	Perfect Dark is a remastered release of the first-person shooter video game by the same name. Developed by 4J Studios and published by Microsoft Game Studios a decade after the original's 2000 release, the remaster features several technical improvements, including higher resolution textures and models, a higher frame rate, and a multiplayer mode that supports the Xbox Live online service. It was released for the Xbox 360 video game console in March 2010, through the Xbox Live Arcade download service. The story of the game follows Joanna Dark, an agent of the Carrington Institute organization, as she attempts to stop a conspiracy by rival corporation dataDyne.\n\nPerfect Dark was under development for nearly a year and its game engine was completely re-written from scratch to support several Xbox 360 features. Therefore, although the game plays exactly the same as the original, the code and renderer is different. The game received generally favorable reviews. Some critics considered the relatively unchanged game to be outdated, but most agreed that the title was a solid revival of a classic.	0	4J Studios
+973fcb65-1760-47ce-94f1-0d568b294185	BioShock 2: Minerva's Den	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360",Mac}	Minerva's Den is a single player downloadable content for BioShock 2. This additional campaign is a self-contained narrative experience that puts players in the role of another Alpha Series Big Daddy in a previously unexplored section of Rapture.\nMinerva's Den shows another vision of Rapture within Minerva's Den, a high-technology center of the city, and explores the backstory of the Thinker, a supercomputer responsible for the control of many automatic devices and systems in the underwater utopia, and its creator Charles Milton Porter.	0	2K Marin
+280d33e8-263a-45e8-9259-bf7c5dd56d49	Wolfenstein II: The New Colossus	\N	Shooter	60.00	{"PC (Microsoft Windows)","PlayStation 4","Xbox One","Nintendo Switch"}	Wolfenstein II: The New Colossus is the eleventh installment of the Wolfenstein series and a sequel to the 2014's Wolfenstein: The New Order. The game follows the main protagonist, William Joseph "B.J." Blazkowicz, in his efforts to ignite a Second American Revolution.\n\nThe game is played from a first-person perspective and most of its levels are navigated on foot. The story is arranged in chapters, which players complete in order to progress. A binary choice in the prologue alters the game's entire storyline; some characters and small plot points are replaced throughout the timelines. The game features a variety of weapons, most of which can be dual wielded. A cover system is also present.	0	id Software
+6a7e0997-1b98-4796-914d-c5ec221d8f9f	Atelier Ryza: Ever Darkness & the Secret Hideout	\N	Role-playing (RPG)	60.00	{"PC (Microsoft Windows)","PlayStation 4","Nintendo Switch"}	The next game in the Atelier franchise and the start of a new series of games.\n\nThe collection system has been redesigned, the items found are the same but different tools or actions will be required to find them at collection points.\nThe crafting system has been updated and a new item making system has been added, to be revealed at a later date.\nThe turn-based combat is getting changed in some fashion to make it more tense, also to be revealed later.	0	Koei Tecmo
+cde24d99-9eb1-46e9-ac87-ab8111c84252	Papa's Cupcakeria To Go!	\N	Strategy	30.00	{Android,iOS}	Bake and decorate delicious cupcakes on the go!	0	Flipline Studios
+5678641c-ce09-4634-98a5-b06b995245e8	Road Trip: Arcade Edition	\N	Racing	18.00	{}	A racing game in the Choro Q series.	0	Takara
+246d6376-0b3d-46ae-916f-adc7ca140390	Jumping Joe & Friends	\N	Platform	22.00	{"Nintendo Switch"}	The creators of Robonauts and Astro Bears Party proudly present a new title perfect for intense playtimes with your friends and family.	0	Qubic Games
+d6bd285e-38e9-4af3-8d75-32c24d4d11ab	Professional Lumberjack 2015	\N	Simulator	25.00	{"PC (Microsoft Windows)"}	Face the hard work of real lumberjacks as you control and operate various small and large machinery at your disposal.  From huge Feller Buncher and Harvesters that debranch and cut up the trunks, to tractors, cranes, trucks and trailers for the transportation of the chopped logs. In your own expandable mill you will be able to produce different goods from the raw material and sell your product output for profit.	0	Bandai Namco Entertainment
+0245f2b2-0140-486b-b7ff-c97831caaad4	Cooking Fever	\N	Strategy	60.00	{iOS}	Cook delicious meals and desserts from all over the world in this FREE addictive time-management game! With a choice of 20 unique locations, from Desserts and Fast Food to an Oyster Bar and Oriental Restaurant, you will be able to practice your skills in a variety of settings and cooking techniques. Use more than a hundred ingredients to cook several hundred tasty dishes. Try all the possible kitchen appliances, from coffee makers and rice cookers to pizza ovens and popcorn makers. Decorate your restaurants to attract more clients. Make your own freebies, such as cookies or cupcakes, to make your customers’ experience more personal and memorable – just like in real life! Upgrade your kitchen and produce an even greater variety of dishes. Oh, and did we say that this game is as addictive and as engrossing as fever? Have fun cooking and don’t forget to share your delicious meals with your friends on Facebook!\n \nFeatures:\n* More than 400 dishes to cook using 150 ingredients\n* 20 unique locations: Fast-Food, Bakery, Chinese, Pizza, Seafood, Indian, Breakfast Café, Sushi Bar, Ice Cream Shop, Paradise Cocktail Bar, Corn Dog Van, Café Mexicana, House of Crab, Sports Bar, Sunset Waffles, Smokey Grill BBQ, Italian Buffet, Salad Bar, Aloha Bistro, Hell's Kitchen. More locations are on the way!\n* More than 400 levels to complete\n* Hundreds and hundreds of upgrades for your kitchen appliances and interior	0	Nordcurrent
+96fc2876-ee22-4f55-8d84-2bd2eb3ac1b9	Monster Jaunt	\N	Indie	45.00	{"PC (Microsoft Windows)",Mac}	A throwback minigame party that won't hurt hands or friendships, with real minigame variety, lightweight strategy, and no dice. Monster Jaunt recreates the feel of the minigame party of years past without simply duplicating it.	0	Sketch House Games
+5d43c516-f4e1-4439-92d1-1c6a031ae976	Cobalt WASD	\N	Shooter	48.00	{"PC (Microsoft Windows)"}	Cobalt WASD is a multiplayer bomb-defusal action platformer with grenades that stop time. Blast your way to the bomb site or repel the assault! Use teleporter guns, grappling hooks, sticky sentry turrets and quick tactical thinking to lead your team to victory! Play online or against AI!	0	Oxeye Game Studio
+8fc3c7db-802a-4bac-8a02-5526fb34c802	Tom Clancy's H.A.W.X 2	\N	Simulator	52.00	{Wii,"PC (Microsoft Windows)","PlayStation 3","Xbox 360","Wii U"}	Aerial warfare has evolved. So have you. As a member of the ultra-secret H.A.W.X. 2 squadron, you are one of the chosen few. One of the truly elite. You will use finely honed reflexes, bleeding-edge technology and ultra-sophisticated aircraft – their existence denied by many governments – to dominate the skies.	0	Ubisoft Bucharest
+ca013020-e622-477d-818b-cbfead26d26c	Gargoyle's Quest II	\N	Platform	36.00	{"Nintendo Entertainment System (NES)","Family Computer"}	The Law of the Claw!\n\nBefore Man ruled the world there were the monsters of Etruria. One such beast Firebrand the Gargoyle. must act to\nrestore the magic that quickly fades from the Ghoul Realm. Join him on his perilous journey as he looks for the origin of a mysterious dark beam of light.\n\nThis epic quest features a hero with leathery wings and the claws of a lion. Breathe fire at hideous creatures that hunger for your essence. Dodge magical assaults. deadly traps and cunning opponents that will stop at nothing to protect their ghastly secret! See if you have what it takes to solve riddles while battling for your very life!\n\n-State-of-the-art Graphics with incredible Music and Sound!\n-Collect magical items to boost your awesome powers!\n-From the sensational hit that set the standard for Game Boy!	0	Capcom
+c5de6ea8-f03d-4e58-8984-89e6fe429e07	Little Triangle	\N	Fighting	53.00	{"PC (Microsoft Windows)",Mac,"PlayStation 4","Xbox One","Nintendo Switch"}	The game targets to be one of the best hardcore platformers ever. If you are worried that a good hardcore game will take you too long to finish, you can try the "casual" mode in Little Triangle where you have some additional lives. With the same level design as the hardcore mode, you will still find the fun in the challenges with much less pressure. If you only love highly challenging hardcore platformers but cannot find new ones, please check the "hardcore" mode of Little Triangle and the difficult level is just right for you.	0	Cotton Game
+37170b07-4908-49c7-be2c-7e385ba3df2e	Insanely Twisted Shadow Planet	\N	Shooter	36.00	{Linux,"PC (Microsoft Windows)","Xbox 360",Mac}	In this Insanely Twisted, 2-D action-adventure game, explore unique environments and battle bizarre creatures as you make your way toward the center of the mysterious Shadow Planet! Solve complex puzzles and upgrade your ship with alien technology as you fight to save your home world.	0	Shadow Planet Productions
+fdc6a4bf-dfb1-4359-9a89-09cc3fd9665e	Invisigun Heroes	\N	Strategy	59.00	{Linux,"PC (Microsoft Windows)",Mac}	Invisigun Heroes is a multiplayer, single-screen stealth battle arena with a twist: everyone’s invisible! Predictable grid-based movement ensures that you know where you are, but other players don’t. Vigilance is key as environmental tells such as footprints and other disturbances will point out careless cadets. Using special abilities and firing your Invisigun will also momentarily give you away. Along with items and powerups, these mechanics reward stealth, trickery, reflex, forethought, deception, bluffing, and awareness. A variety of lovingly-made environments, maps, game modes, and abilities combine for high replayability and a deep path to mastery.	0	Sombr Studio LLC
+5e608e6d-9f06-4feb-bac9-21dacc3bb0ff	Project Downfall	\N	Shooter	42.00	{"PC (Microsoft Windows)"}	An overdose of reality can have dire consequences… Descend down the rabbit hole and embrace your Downfall in a trippy, brutal and stylized adventure.	0	MGP Studios
+45bd6f4b-61fe-492e-802f-caded41e6fd6	Tooth and Tail	\N	Real Time Strategy (RTS)	58.00	{Linux,"PC (Microsoft Windows)",Mac,"PlayStation 4"}	Lead the revolution with an army of flamethrowing Boars, mustard gas-lobbing Skunks, and paratrooper-puking Owls. Tooth and Tail is a Real-Time-Strategy game featuring Single Player, Online Competitive Play, Split Screen, Replays, and more. Build a base, lead your army, eat your enemies!	0	Pocketwatch Games
+d5f593cb-932d-49a2-bf8f-3069a2ad8005	New International Track & Field	\N	Sport	16.00	{"Nintendo DS"}	The classic sporting game series of Track and Field celebrates its' 25th Anniversary by coming to the Nintendo DS. All the excitement and fun of the original titles is brought up to date with a bright and stylish new look, more events and online play.	0	Konami
+c4cdf18d-fa7e-4129-8220-b7e23ec97611	Star Raiders	\N	Shooter	18.00	{"PC (Microsoft Windows)","PlayStation 3","Xbox 360"}	"Star Raiders features a fresh new take on the seminal classic, letting you engage in epic dogfights and aerial assaults against the onslaught of the evil Zylons. Utilize radical ship transformations and robot co-pilots in the heat of battle as you fight to save humanity. Explore the galaxy as you utilize galactic warps and sector tactical maps that let you set your own path to liberation!"	0	Incinerator Studios
+cf8895bd-f0cc-41de-be17-0a83984fd882	Charinko Hero	\N	Racing	13.00	{"Nintendo GameCube"}	Charinko Hero is a Racing game, developed and published by Banpresto, which was released in Japan in 2003.	0	Banpresto
+d2bcecac-8344-4348-b235-559f97de8b8f	Employee Recycling Center	\N	Adventure	22.00	{Linux,"PC (Microsoft Windows)",Mac}	Abandoned by your co-workers after a terrible accident in the factory, you are trapped. Interact with your environment, solve puzzles and unlock up to 500 achievements in this new adventure for PC and Virtual Reality Headsets.	0	Idea Cabin
+619d2b0e-0b99-4889-a871-2066d1f7cf63	Duck Warfare	\N	Strategy	34.00	{}	Protect your park from being taken from you by the GÜSCO corporation!	0	Kenny Park
+b6ce168b-6bdb-4328-bcfa-a9f5daca4960	Hot Mars 69	\N	Adventure	32.00	{}	You play for the commander of the special forces group - Elon, ​​and you need to kill all the devil-mutants in the colony on Mars to avenge for the dead comrades, and to escape.	0	Nikita "Ghost_RUS"
+e079615e-9abe-4842-be66-84a6416e6fab	Quest for the Golden Duck	\N	Adventure	22.00	{"PC (Microsoft Windows)","Nintendo Switch"}	Run around the maze collecting coins while being chased by spooky monsters. Outsmart the enemies in 4-player co-op games, or play the versus mode as a monster to prevent the other team from stealing all the gold from the castle.	0	Milan Babuskov
+1e1dfdea-180c-45eb-8f24-0757760db09d	Craft Warriors	\N	Simulator	22.00	{}	A New Generation RTS	0	
+a5245254-3f28-4e55-b434-e5db939b4c2f	Jikkyou Powerful Pro Yakyuu 10	\N		23.00	{}		0	Konami
+81d7ca7b-97fd-465e-935d-a842f940845a	Alter Echo	\N	Fighting	35.00	{"PlayStation 2",Xbox}	In Alter Echo, interstellar corporations mine a new organic skin called Plast and use it to make biomachines. Nevin, who can physically alter Plast and time itself, discovers that illegal experiments have infected Plast with human consciousness, and now he must fight for survival against a world gone mad. As you battle wave after wave of biomechanical enemies, you can morph between Melee, Gun, and Stealth modes. A Time Dilation system allows players to freeze the action and cue up an unstoppable flurry of moves and special attacks.	0	THQ
+8cd7413f-cdea-422c-8fb5-b3aa601b8f54	BeyBlade VForce: Super Tournament Battle	\N		18.00	{"Nintendo GameCube"}		0	Takara
+d4687743-ad20-4eed-ba1d-2982d95ed538	Battleship Bishojo	\N	Simulator	30.00	{Linux,"PC (Microsoft Windows)",Mac}	Join the girls on a non-stop naval adventure to unravel the secrets of both the legendary creatures and the truth about the world inhabited by the battleship Bishojo! You can expect swashbuckling action, twists, ecchi humour and - of course - plenty of fanservice!	0	Silver Cow Studio
+d4090674-2c9d-4ae6-9d61-684a48adf699	Logistics Company	\N	Simulator	34.00	{"PC (Microsoft Windows)"}	As a dock worker in "Logistics Company” it’s up to you to move thousands of tons of cargo and goods and make sure that they’re shipped on time! Build your tiny warehouse into a major logistics hub and expand it bit by bit with new cargo terminals.\n\nControl the high-powered reach stacker and the amazingly tall cranes to load freight onto trains, trucks and ships. Manoeuvre the forklift through your warehouse. Only if you work hard and plan cleverly can you become a major logistics service provider!	0	Crenetic GmbH Studios
+2aabb4fe-1dc0-4c60-a2b0-e763c3089261	Crazy Scientist	\N	Simulator	32.00	{"PC (Microsoft Windows)"}	Crazy Scientist - is a simple, intuitive 2D platformer with original, beautiful graphics suitable for all ages. In this platformer you have to pass a variety of picturesque levels for a mad scientist. Your main mission is to complete levels by gathering vials.	0	Vyacheslav Shilikhin
+2ea87649-5e4c-43fd-ad4d-a8ca69d0fd98	Daylight	\N	Adventure	11.00	{"PC (Microsoft Windows)","PlayStation 4"}	You awake, trapped in an abandoned hospital. Your only source of light is your phone. You hit a dead-end and must turn around, but behind you lurks an eerie presence and strange noises…	0	Zombie Studios
+3e75389f-c845-4140-9ab5-84275f64e743	Akiba's Trip: Undead & Undressed	\N	Role-playing (RPG)	13.00	{"PC (Microsoft Windows)","PlayStation 3","PlayStation Vita","PlayStation 4"}	Akiba's Trip: Undead & Undressed is an open-world action RPG in which players undertake numerous missions in a virtual recreation of Akihabara, Tokyo’s popular ”Electric Town” district.	0	XSEED Games
+af7d0ef9-bfd9-4af3-92b0-1e3975f17755	Red Dead Redemption	40	Adventure	60.00	{Playstation3,"Xbox 360"}	Red Dead Redemption is a 2010 action-adventure game developed by Rockstar San Diego and published by Rockstar Games. A spiritual successor to 2004's Red Dead Revolver, it is the second game in the Red Dead series. Red Dead Redemption is set during the decline of the American frontier in the year 1911 and follows John Marston, a former outlaw whose wife and son are taken hostage by the government in ransom for his services as a hired gun. Having no other choice, Marston sets out to bring three members of his former gang to justice.	0	Rockstar
+\.
+
+
+--
+-- Data for Name: organization_organization; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.organization_organization ("OrgName") FROM stdin;
+IGN
+GamersRUs
+\.
+
+
+--
+-- Data for Name: review_review; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.review_review (id, "Comment", "Score", "Game_id", "User_id") FROM stdin;
+\.
+
+
+--
+-- Data for Name: studio_studio; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.studio_studio ("SName") FROM stdin;
+Fromsoft
+Santa Monica Studio
+Bungie Inc
+Nintendo
+Rockstar
+Capcom
+CD Projekt
+Atari
+Bethesda
+Ascaron Entertainment
+FLO-server
+Big Fish Games
+Big Ape Productions
+PagodaWest Games
+BioWare
+2K Games
+Sekai Project
+SuperVillain Studios
+Electronic Arts
+Gearbox Software
+Milestone S.r.l.
+EA Canada
+2K Sports
+Arc System Works
+Positech Games
+Rovio Entertainment
+LAN Games EOOD
+ZeptoLab
+Zachtronics
+Big Blue Bubble
+Asmodee Digital
+Level-5
+Area 35
+Level Up Labs
+Nerdook Productions
+id Software
+Mobius Digital
+HAL Laboratory
+Glu Mobile
+Nintendo EAD Group No. 4
+Sunsoft
+Rusty Lake
+Microsoft Studios
+Project Soul
+Sega
+Devolver Digital
+Microsoft Game Studios
+Namco Bandai Games
+Deep Silver
+Digital Legends Entertainment
+Dingaling
+Alan Edwardes
+Libredia
+KLab
+Ubisoft Paris
+SNK
+Square Enix
+M2
+Ctrl Alt Ninja
+Illusion
+Lucasfilm Games
+Arkane Studios SA
+Uranium Team
+Rockstar Games
+Daedalic Entertainment
+PORTANIS
+Zipper Interactive
+Nintendo SPD
+DirtyBit
+FDG Entertainment
+Blizzard Entertainment
+JoyMasher
+Spry Fox LLC
+IMGN.PRO
+Housemarque
+Namco
+Taito Corporation
+Frank Lantz
+Infogrames
+Nnooo Pty Ltd.
+Beamdog
+Capcom Entertainment, Inc.
+Actualize
+Other Tales Interactive
+Polyphony Digital
+Buena Vista Games
+Robotronic Games
+Apogee Software
+NetherRealm Studios
+Everything Unlimited Ltd.
+Firaxis Games
+Blue Byte Software
+EA Tiburon
+Valve Corporation
+Gameloft
+Webble Games
+Toontown Rewritten Team
+Forgotten Empires LLC
+ArenaNet
+Coffee Stain Studios
+4J Studios
+2K Marin
+Koei Tecmo
+Nordcurrent
+Sketch House Games
+Oxeye Game Studio
+Ubisoft Bucharest
+Cotton Game
+Shadow Planet Productions
+Sombr Studio LLC
+MGP Studios
+Pocketwatch Games
+Konami
+Incinerator Studios
+Banpresto
+Flipline Studios
+Takara
+Qubic Games
+Bandai Namco Entertainment
+Cartoon Network
+Idea Cabin
+Kenny Park
+Nikita "Ghost_RUS"
+Milan Babuskov
+
+THQ
+Silver Cow Studio
+Crenetic GmbH Studios
+Vyacheslav Shilikhin
+Zombie Studios
+XSEED Games
+\.
+
+
+--
+-- Data for Name: user_user; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.user_user (id, password, last_login, is_superuser, "Name", "Age", is_admin, username) FROM stdin;
+4	pbkdf2_sha256$320000$1qC5ZclVdU2055dAZMQ58w$xWgzkIqWihUzSMhW9+wL6p2vapkCE/IIZvnqcIlvoPM=	\N	f	Ashley Courta	18	f	AshleyCourta
+2	pbkdf2_sha256$320000$uJkwunWmRuHO7RmX3cyxDN$+1BFN+F1+YRdRonYWx/1CJWPbL28j+7j6pYZQwewa7Y=	\N	f	Ronald Walker	23	f	RonaldWalker
+5	pbkdf2_sha256$320000$UCiryvdd7aRYnB93ttMAdV$vHydehw7TX7x+7ZlfyhDzDnBcEImFImTxjFAsWZfCLk=	\N	f	Jacob Luta	22	f	JacobLuta
+6	pbkdf2_sha256$320000$EGMZAK907fXQhVESFKdQu1$x4Kx2gEM2qedGCXDGuH66+YqXAN4uZZVcmDu2pFYuno=	\N	f	Sammy Aimes	16	f	SammyAimes
+7	pbkdf2_sha256$320000$9If4WW4sZwGvjnDnMPOfra$3um52jnaBk5cxcfjv/zg1LeuwHYUPUGA8JczaaeRVzI=	2022-04-13 10:01:52.366047-07	f	Austin Spencer	25	f	abspence
+3	pbkdf2_sha256$320000$7sQQlx4sSFTIzJE5kFqyDf$lekRJjzYbAw5HgyzU/aSe1wwtSBypClov4LV4ize1NI=	2022-04-13 10:09:59.602194-07	f	Jason Porter	17	f	JasonPorter
+1	pbkdf2_sha256$320000$xsQZB1ZwV3kHXBVhHniVIm$9u50EI3rFwAwvdSqv/Fs7w7U9d/Dj9+nacvGxnbFAag=	2022-04-21 16:22:27.08022-07	f	Austin Spencer	25	t	austin
+\.
+
+
+--
+-- Data for Name: user_user_Favorites; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public."user_user_Favorites" (id, user_id, game_id) FROM stdin;
+7	1	0ac81a2d-9780-470c-a595-845cbc4e7c2b
+8	1	af7d0ef9-bfd9-4af3-92b0-1e3975f17755
+\.
+
+
+--
+-- Data for Name: user_user_Owns; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public."user_user_Owns" (id, user_id, game_id) FROM stdin;
+10	1	af7d0ef9-bfd9-4af3-92b0-1e3975f17755
+\.
+
+
+--
+-- Data for Name: user_user_groups; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.user_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: user_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: gaming_admin
+--
+
+COPY public.user_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 44, true);
+
+
+--
+-- Name: award_award_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.award_award_id_seq', 5, true);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 19, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 11, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 31, true);
+
+
+--
+-- Name: review_review_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.review_review_id_seq', 4, true);
+
+
+--
+-- Name: user_user_Favorites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public."user_user_Favorites_id_seq"', 8, true);
+
+
+--
+-- Name: user_user_Owns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public."user_user_Owns_id_seq"', 10, true);
+
+
+--
+-- Name: user_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.user_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: user_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.user_user_id_seq', 7, true);
+
+
+--
+-- Name: user_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gaming_admin
+--
+
+SELECT pg_catalog.setval('public.user_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: award_award award_award_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.award_award
+    ADD CONSTRAINT award_award_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: game_game game_game_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.game_game
+    ADD CONSTRAINT game_game_pkey PRIMARY KEY ("GameId");
+
+
+--
+-- Name: organization_organization organization_organization_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.organization_organization
+    ADD CONSTRAINT organization_organization_pkey PRIMARY KEY ("OrgName");
+
+
+--
+-- Name: review_review review_review_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.review_review
+    ADD CONSTRAINT review_review_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: studio_studio studio_studio_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.studio_studio
+    ADD CONSTRAINT studio_studio_pkey PRIMARY KEY ("SName");
+
+
+--
+-- Name: user_user_Favorites user_user_Favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Favorites"
+    ADD CONSTRAINT "user_user_Favorites_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: user_user_Favorites user_user_Favorites_user_id_game_id_504d7b25_uniq; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Favorites"
+    ADD CONSTRAINT "user_user_Favorites_user_id_game_id_504d7b25_uniq" UNIQUE (user_id, game_id);
+
+
+--
+-- Name: user_user_Owns user_user_Owns_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Owns"
+    ADD CONSTRAINT "user_user_Owns_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: user_user_Owns user_user_Owns_user_id_game_id_95043873_uniq; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Owns"
+    ADD CONSTRAINT "user_user_Owns_user_id_game_id_95043873_uniq" UNIQUE (user_id, game_id);
+
+
+--
+-- Name: user_user_groups user_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_groups
+    ADD CONSTRAINT user_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_user_groups user_user_groups_user_id_group_id_bb60391f_uniq; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_groups
+    ADD CONSTRAINT user_user_groups_user_id_group_id_bb60391f_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: user_user user_user_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user
+    ADD CONSTRAINT user_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_user_user_permissions user_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_user_permissions
+    ADD CONSTRAINT user_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_user_user_permissions user_user_user_permissions_user_id_permission_id_64f4d5b8_uniq; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_user_permissions
+    ADD CONSTRAINT user_user_user_permissions_user_id_permission_id_64f4d5b8_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: user_user user_user_username_key; Type: CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user
+    ADD CONSTRAINT user_user_username_key UNIQUE (username);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: award_award_Game_id_7d82d117; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "award_award_Game_id_7d82d117" ON public.award_award USING btree ("Game_id");
+
+
+--
+-- Name: award_award_Organization_id_08ef4b9e; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "award_award_Organization_id_08ef4b9e" ON public.award_award USING btree ("Organization_id");
+
+
+--
+-- Name: award_award_Organization_id_08ef4b9e_like; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "award_award_Organization_id_08ef4b9e_like" ON public.award_award USING btree ("Organization_id" varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: game_game_Studio_id_b6bbdccd; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "game_game_Studio_id_b6bbdccd" ON public.game_game USING btree ("Studio_id");
+
+
+--
+-- Name: game_game_Studio_id_b6bbdccd_like; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "game_game_Studio_id_b6bbdccd_like" ON public.game_game USING btree ("Studio_id" varchar_pattern_ops);
+
+
+--
+-- Name: organization_organization_OrgName_17cd9335_like; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "organization_organization_OrgName_17cd9335_like" ON public.organization_organization USING btree ("OrgName" varchar_pattern_ops);
+
+
+--
+-- Name: review_review_Game_id_a0240289; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "review_review_Game_id_a0240289" ON public.review_review USING btree ("Game_id");
+
+
+--
+-- Name: review_review_User_id_b558382d; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "review_review_User_id_b558382d" ON public.review_review USING btree ("User_id");
+
+
+--
+-- Name: studio_studio_SName_5facecf1_like; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "studio_studio_SName_5facecf1_like" ON public.studio_studio USING btree ("SName" varchar_pattern_ops);
+
+
+--
+-- Name: user_user_Favorites_game_id_f811ccb6; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "user_user_Favorites_game_id_f811ccb6" ON public."user_user_Favorites" USING btree (game_id);
+
+
+--
+-- Name: user_user_Favorites_user_id_c49fda39; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "user_user_Favorites_user_id_c49fda39" ON public."user_user_Favorites" USING btree (user_id);
+
+
+--
+-- Name: user_user_Owns_game_id_7dd16c24; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "user_user_Owns_game_id_7dd16c24" ON public."user_user_Owns" USING btree (game_id);
+
+
+--
+-- Name: user_user_Owns_user_id_976c2585; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX "user_user_Owns_user_id_976c2585" ON public."user_user_Owns" USING btree (user_id);
+
+
+--
+-- Name: user_user_groups_group_id_c57f13c0; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX user_user_groups_group_id_c57f13c0 ON public.user_user_groups USING btree (group_id);
+
+
+--
+-- Name: user_user_groups_user_id_13f9a20d; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX user_user_groups_user_id_13f9a20d ON public.user_user_groups USING btree (user_id);
+
+
+--
+-- Name: user_user_user_permissions_permission_id_ce49d4de; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX user_user_user_permissions_permission_id_ce49d4de ON public.user_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: user_user_user_permissions_user_id_31782f58; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX user_user_user_permissions_user_id_31782f58 ON public.user_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: user_user_username_e2bdfe0c_like; Type: INDEX; Schema: public; Owner: gaming_admin
+--
+
+CREATE INDEX user_user_username_e2bdfe0c_like ON public.user_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: award_award award_award_Game_id_7d82d117_fk_game_game_GameId; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.award_award
+    ADD CONSTRAINT "award_award_Game_id_7d82d117_fk_game_game_GameId" FOREIGN KEY ("Game_id") REFERENCES public.game_game("GameId") DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: award_award award_award_Organization_id_08ef4b9e_fk_organizat; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.award_award
+    ADD CONSTRAINT "award_award_Organization_id_08ef4b9e_fk_organizat" FOREIGN KEY ("Organization_id") REFERENCES public.organization_organization("OrgName") DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_user_user_id; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_user_user_id FOREIGN KEY (user_id) REFERENCES public.user_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: game_game game_game_Studio_id_b6bbdccd_fk_studio_studio_SName; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.game_game
+    ADD CONSTRAINT "game_game_Studio_id_b6bbdccd_fk_studio_studio_SName" FOREIGN KEY ("Studio_id") REFERENCES public.studio_studio("SName") DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: review_review review_review_Game_id_a0240289_fk_game_game_GameId; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.review_review
+    ADD CONSTRAINT "review_review_Game_id_a0240289_fk_game_game_GameId" FOREIGN KEY ("Game_id") REFERENCES public.game_game("GameId") DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: review_review review_review_User_id_b558382d_fk_user_user_id; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.review_review
+    ADD CONSTRAINT "review_review_User_id_b558382d_fk_user_user_id" FOREIGN KEY ("User_id") REFERENCES public.user_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_user_Favorites user_user_Favorites_game_id_f811ccb6_fk_game_game_GameId; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Favorites"
+    ADD CONSTRAINT "user_user_Favorites_game_id_f811ccb6_fk_game_game_GameId" FOREIGN KEY (game_id) REFERENCES public.game_game("GameId") DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_user_Favorites user_user_Favorites_user_id_c49fda39_fk_user_user_id; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Favorites"
+    ADD CONSTRAINT "user_user_Favorites_user_id_c49fda39_fk_user_user_id" FOREIGN KEY (user_id) REFERENCES public.user_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_user_Owns user_user_Owns_game_id_7dd16c24_fk_game_game_GameId; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Owns"
+    ADD CONSTRAINT "user_user_Owns_game_id_7dd16c24_fk_game_game_GameId" FOREIGN KEY (game_id) REFERENCES public.game_game("GameId") DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_user_Owns user_user_Owns_user_id_976c2585_fk_user_user_id; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public."user_user_Owns"
+    ADD CONSTRAINT "user_user_Owns_user_id_976c2585_fk_user_user_id" FOREIGN KEY (user_id) REFERENCES public.user_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_user_groups user_user_groups_group_id_c57f13c0_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_groups
+    ADD CONSTRAINT user_user_groups_group_id_c57f13c0_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_user_groups user_user_groups_user_id_13f9a20d_fk_user_user_id; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_groups
+    ADD CONSTRAINT user_user_groups_user_id_13f9a20d_fk_user_user_id FOREIGN KEY (user_id) REFERENCES public.user_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_user_user_permissions user_user_user_permi_permission_id_ce49d4de_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_user_permissions
+    ADD CONSTRAINT user_user_user_permi_permission_id_ce49d4de_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: user_user_user_permissions user_user_user_permissions_user_id_31782f58_fk_user_user_id; Type: FK CONSTRAINT; Schema: public; Owner: gaming_admin
+--
+
+ALTER TABLE ONLY public.user_user_user_permissions
+    ADD CONSTRAINT user_user_user_permissions_user_id_31782f58_fk_user_user_id FOREIGN KEY (user_id) REFERENCES public.user_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
