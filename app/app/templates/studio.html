@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container">
+    <div class="row justify-content-md-center g-1">
+      <div class="col col-sm-10">
+        <div class="card" >
+            <div class="card-body">
+              <h5 class="card-title">{{studio}}</h5>
+			  <h6 class="card-subtitle mb-2 text-muted">Game Associated with Studio:</h6>
+				<div class ="list-group">
+				{% for game in games %}
+				  <a href="/game/{{game.GameId}}" class="list-group-item list-group-item-action">
+					{{ game.Title }}
+				  </a>
+				{% endfor %}
+				</div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
