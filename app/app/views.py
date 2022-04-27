@@ -11,6 +11,7 @@ from review.serializers import ReviewSerializer
 from review.models import Review
 from user.serializers import UserSerializer
 from user.models import User
+from studio.models import Studio
 
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -219,6 +220,29 @@ class Games(APIView):
                 messages.success(request, ("Your review was created successfully!"))
 
         return HttpResponseRedirect(f"/game/{game.GameId}")
+
+
+class Studios(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = "studio.html"
+
+    def get(self, request, sname):
+            if Studio.objects.filter(SName=sname).exists():
+                studio = Studio.objects.get(SName=sname)
+                games = Game.objects.filter(Studio=studio).all()
+                serialized_games = GameSerializer(games, many=True).data
+                return Response(
+                    {
+                    "studio": studio.SName,
+                    "games":serialized_games
+                    }
+                )
+            else:                
+                return redirect("error")
+
+    def post(self, request):
+        searched = request.POST["searched"]
+        return HttpResponseRedirect(f"/?search={searched}")
 
 
 class NotFound(APIView):

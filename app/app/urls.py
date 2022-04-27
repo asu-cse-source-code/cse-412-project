@@ -29,6 +29,8 @@ urlpatterns = [
     path("register", Register.as_view(), name="register"),
     path("game/<str:id>", Games.as_view(), name="game"),
     path("notfound", NotFound.as_view(), name="error"),
+    path("studio/<str:sname>", Studios.as_view(), name="studio"),
+
     # Backend paths
     path("api-auth/", include("rest_framework.urls")),
     path("admin/", admin.site.urls),
@@ -36,4 +38,5 @@ urlpatterns = [
     path("gamespot/games/", include("game.urls")),
     path("gamespot/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("gamespot/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+
 ]
