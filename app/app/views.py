@@ -17,6 +17,8 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from urllib.parse import unquote
+
 
 class Profile(APIView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -155,20 +157,20 @@ class Games(APIView):
             if Game.objects.filter(GameId=id).exists():
                 game = Game.objects.get(GameId=id)
                 serializer = GameSerializer(game, many=False)
-                print(serializer.data)
                 favorited = False
                 review = None
                 owned = False
                 avg_review = None
-                if request.user.Favorites.filter(GameId=id).exists():
-                    favorited = True
-                if request.user.Owns.filter(GameId=id).exists():
-                    owned = True
-                if request.user and hasattr(request.user, "reviews"):
-                    if request.user.reviews.filter(Game=game).exists():
-                        review = ReviewSerializer(
-                            request.user.reviews.get(Game=game), many=False
-                        )
+                if request.user.is_authenticated:
+                    if request.user.Favorites.filter(GameId=id).exists():
+                        favorited = True
+                    if request.user.Owns.filter(GameId=id).exists():
+                        owned = True
+                    if request.user and hasattr(request.user, "reviews"):
+                        if request.user.reviews.filter(Game=game).exists():
+                            review = ReviewSerializer(
+                                request.user.reviews.get(Game=game), many=False
+                            )
                 if hasattr(game, "reviews"):
                     avg_review = game.get_avg_reviews()
 
@@ -227,18 +229,14 @@ class Studios(APIView):
     template_name = "studio.html"
 
     def get(self, request, sname):
-            if Studio.objects.filter(SName=sname).exists():
-                studio = Studio.objects.get(SName=sname)
-                games = Game.objects.filter(Studio=studio).all()
-                serialized_games = GameSerializer(games, many=True).data
-                return Response(
-                    {
-                    "studio": studio.SName,
-                    "games":serialized_games
-                    }
-                )
-            else:                
-                return redirect("error")
+        sname = unquote(sname)
+        if Studio.objects.filter(SName=sname).exists():
+            studio = Studio.objects.get(SName=sname)
+            games = Game.objects.filter(Studio=studio).all()
+            serialized_games = GameSerializer(games, many=True).data
+            return Response({"studio": studio.SName, "games": serialized_games})
+        else:
+            return redirect("error")
 
     def post(self, request):
         searched = request.POST["searched"]
