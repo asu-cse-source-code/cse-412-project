@@ -46,7 +46,7 @@
                   <p class="card-text"><strong>Console: </strong>{{game.Console|join:" , "}}</p>
                 </div>
                 <div class="col col-lg-4">
-                  <p class="card-text"><strong>Studio: </strong>{{game.Studio}}</p>
+                  <p class="card-text"><strong>Studio: </strong><a href="/studio/{{game.Studio}}">{{game.Studio}}</a></p>
                 </div>
                 <div class="col col-lg-4">
                   <p class="card-text"><strong># of Reviews: </strong>{{game.Reviews}}</p>
@@ -65,7 +65,7 @@
                   {% else %}
                 <div class="col col-lg-4"></div>
                   {% endif %}
-                  {% if not favorited %}
+                  {% if user.is_authenticated and not favorited %}
                 <div class="col col-lg-auto">
                     <form method="POST">
                         {% csrf_token %}
@@ -73,7 +73,7 @@
                     </form>
                 </div>
                 {% endif %}
-                {% if not owned %}
+                {% if user.is_authenticated and not owned %}
                 <div class="col col-lg-auto">
                     <form method="POST">
                         {% csrf_token %}
